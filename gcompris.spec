@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 8.2.2
-%define release %mkrel 3
+%define release %mkrel 4
 %define libname %mklibname gcompris 1.0
 
 Summary: GCompris
