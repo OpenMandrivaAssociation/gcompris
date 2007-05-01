@@ -154,6 +154,16 @@ Requires:	locales-fr
 %description sounds-fr
 French sounds for gcompris.
 
+%package sounds-hi
+Summary:	Hindi soundsfor GCompris
+Group:		Games/Other
+Requires:	%{name} = %{version}
+Provides:       %{name}-sound = %{version}
+Requires:	locales-hi
+
+%description sounds-hi
+Hindi sounds for gcompris.
+
 %package sounds-hu
 Summary:        Hungarian sounds for GCompris
 Group:          Games/Other
@@ -403,6 +413,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 %_datadir/%{name}/boards/sounds/fr/*
 %dir %_datadir/%{name}/boards/sounds/fr
+
+%files sounds-hi
+%defattr(-, root, root)
+%_datadir/%{name}/boards/sounds/hi/*
+%dir %_datadir/%{name}/boards/sounds/hi
 
 %files sounds-hu
 %defattr(-, root, root)
