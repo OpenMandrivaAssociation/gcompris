@@ -27,7 +27,7 @@ BuildRequires: python-pyxml
 BuildRequires: python-sqlite2
 BuildRequires: libgnomecanvas2-devel libgtk+2-devel
 # (misc) for fullscreen support, now it is done with xvidmode instead of xrandr
-BuildRequires: libXxf86vm-devel
+BuildRequires: libxxf86vm-devel
 Requires:      %{name}-sound = %{version}
 # (misc) gnuchess for the chees activitie, gnome-python-canvas for python board
 Requires:      gnuchess >= 5.02 
