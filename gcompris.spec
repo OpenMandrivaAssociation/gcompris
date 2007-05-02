@@ -310,6 +310,41 @@ make
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
+mkdir -p %{buildroot}%{_menudir}
+
+cat > %{buildroot}%{_menudir}/%{name} << EOF
+?package(%{name}): \
+	command="%{_bindir}/%{name}" \
+	title="Gcompris" \
+	longtitle="Multi-activity educational game" \
+	icon="%{name}.png" \
+	needs="x11" \
+	section="More Applications/Games/Other" \
+	xdg="true"
+	
+?package(%{name}): \ 
+	command="%{_bindir}/%{name} -a --nolockcheck" \
+	title="Gcompris administration" \
+	longtitle="Administration module of gcompris" \
+	icon="%{name}.png" \
+	needs="x11" \
+	section="More Applications/Education/Other" \
+	xdg="true"
+EOF
+
+desktop-file-install --vendor="" \
+  --remove-category="Application" \
+  --add-category="Education" \
+  --add-category="X-MandrivaLinux-MoreApplications-Education-Other;Art / Construction / Music / Teaching;" \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/gcompris-edit.desktop
+
+desktop-file-install --vendor="" \
+  --remove-category="Application" \
+  --add-category="Game" \
+  --add-category="KidsGame" \
+  --add-category="More Applications/Games/Other" \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/gcompris.desktop
+
 # install icons
 mkdir -p $RPM_BUILD_ROOT{%{_liconsdir},%{_miconsdir},%{_iconsdir}}
 cp %{name}.png $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
@@ -323,26 +358,20 @@ find $RPM_BUILD_ROOT/%_datadir/%{name}/ -type f | grep -v sounds | grep -v music
 find $RPM_BUILD_ROOT/%_datadir/%{name}/boards/sounds/ -type f -maxdepth 1 | sed 's|'$RPM_BUILD_ROOT'||' >> %{name}.files
 
 perl -pi -e 's|#searace1player.xml#||g' %{name}.files
-
 cat  %{name}.files %{name}.lang > %{name}.all
-
 rm -rf $RPM_BUILD_ROOT/%_datadir/locale/*/LC_MESSAGES/*GETTEXT*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post 
-
 %update_menus
-
 %_install_info %{name}.info
 
 %postun 
-
 %clean_menus
 
 %preun
-
 %_remove_install_info %{name}.info
 
 %files -f  %{name}.all
