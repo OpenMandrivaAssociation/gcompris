@@ -14,7 +14,7 @@ Buildrequires: gnuchess libogg-devel
 Buildrequires: libxml2-devel 
 Buildrequires: libvorbis-devel libao-devel 
 Buildrequires: ImageMagick
-#Buildrequires: liblinc-devel 
+BuildRequires: desktop-file-utils
 # (misc) needed for python support
 Buildrequires: gnome-python python-devel pygtk2.0-devel
 Buildrequires: texinfo tetex-texi2html libassetml-devel
