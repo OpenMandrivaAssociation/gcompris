@@ -334,16 +334,16 @@ EOF
 
 desktop-file-install --vendor="" \
   --remove-category="Application" \
-  --add-category="Education" \
-  --add-category="X-MandrivaLinux-MoreApplications-Education-Other;Art / Construction / Music / Teaching;" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/gcompris-edit.desktop
+  --add-category="Game" \
+  --add-category="KidsGame" \
+  --add-category="X-MandrivaLinux-MoreApplications-Games-Other" \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/gcompris.desktop
 
 desktop-file-install --vendor="" \
   --remove-category="Application" \
-  --add-category="Game" \
-  --add-category="KidsGame" \
-  --add-category="More Applications/Games/Other" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/gcompris.desktop
+  --add-category="Education" \
+  --add-category="X-MandrivaLinux-MoreApplications-Education-Other" \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/gcompris-edit.desktop
 
 # install icons
 mkdir -p $RPM_BUILD_ROOT{%{_liconsdir},%{_miconsdir},%{_iconsdir}}
