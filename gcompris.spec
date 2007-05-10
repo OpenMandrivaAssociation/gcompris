@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 8.3.1
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: GCompris
 Name: 	%name
@@ -319,7 +319,7 @@ cat > %{buildroot}%{_menudir}/%{name} << EOF
 	longtitle="Multi-activity educational game" \
 	icon="%{name}.png" \
 	needs="x11" \
-	section="More Applications/Games/Other" \
+	section="More Applications/Education" \
 	xdg="true"
 	
 ?package(%{name}): \ 
@@ -336,7 +336,7 @@ desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="Game" \
   --add-category="KidsGame" \
-  --add-category="X-MandrivaLinux-MoreApplications-Games-Other" \
+  --add-category="X-MandrivaLinux-MoreApplications-Education" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/gcompris.desktop
 
 desktop-file-install --vendor="" \
