@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 8.3.1
-%define release %mkrel 2
+%define release %mkrel 3
 
 Summary: GCompris
 Name: 	%name
@@ -306,31 +306,8 @@ make
 #kill $(cat /tmp/.X$XDISPLAY-lock)
 
 %install
-
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
-
-mkdir -p %{buildroot}%{_menudir}
-
-cat > %{buildroot}%{_menudir}/%{name} << EOF
-?package(%{name}): \
-	command="%{_bindir}/%{name}" \
-	title="Gcompris" \
-	longtitle="Multi-activity educational game" \
-	icon="%{name}.png" \
-	needs="x11" \
-	section="More Applications/Education" \
-	xdg="true"
-	
-?package(%{name}): \ 
-	command="%{_bindir}/%{name} -a --nolockcheck" \
-	title="Gcompris administration" \
-	longtitle="Administration module of gcompris" \
-	icon="%{name}.png" \
-	needs="x11" \
-	section="More Applications/Education/Other" \
-	xdg="true"
-EOF
 
 desktop-file-install --vendor="" \
   --remove-category="Application" \
@@ -346,12 +323,18 @@ desktop-file-install --vendor="" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/gcompris-edit.desktop
 
 # install icons
-mkdir -p $RPM_BUILD_ROOT{%{_liconsdir},%{_miconsdir},%{_iconsdir}}
-cp %{name}.png $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
-convert -scale 32x32 %{name}.png $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
-convert -scale 16x16 %{name}.png $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
+install -m 644 gcompris{,-edit}.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/
+for size in 16x16 32x32; do
+	convert -scale $size gcompris.png \
+		$RPM_BUILD_ROOT%{_iconsdir}/hicolor/$size/apps/gcompris.png
+	convert -scale $size gcompris-edit.png \
+		$RPM_BUILD_ROOT%{_iconsdir}/hicolor/$size/apps/gcompris-edit.png
+done
 
- 
+# remove unwanted files
+rm -f $RPM_BUILD_ROOT/%{_menudir}/gcompris
+
 %find_lang %name
 find $RPM_BUILD_ROOT/%_datadir/%{name}/ -type d | grep -v sounds | grep -v music/background | sed 's|'$RPM_BUILD_ROOT'\(.*\)|%dir "\1" |' > %{name}.dir
 find $RPM_BUILD_ROOT/%_datadir/%{name}/ -type f | grep -v sounds | grep -v music/background | sed 's|'$RPM_BUILD_ROOT'\(.*\)|"\1"|' > %{name}.files
@@ -386,11 +369,9 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/%name/boards/sounds/LuneRouge/
 %_datadir/%name/boards/sounds/memory/
 %_datadir/pixmaps/*
-%_menudir/*
 %_infodir/*
-%{_liconsdir}/%{name}.png
-%{_miconsdir}/%{name}.png
-%{_iconsdir}/%{name}.png
+%{_iconsdir}/hicolor/*/apps/gcompris.png
+%{_iconsdir}/hicolor/*/apps/gcompris-edit.png
 %_mandir/man6/*
 
 %files music
@@ -508,4 +489,3 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/%{name}/boards/sounds/tr/*
 %dir %_datadir/%{name}/boards/sounds/tr
 
-%changelog
