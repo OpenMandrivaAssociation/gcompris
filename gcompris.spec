@@ -2,7 +2,7 @@
 %define version 8.3.1
 %define release %mkrel 3
 
-Summary: GCompris
+Summary: An educational game for children starting at 2.
 Name: 	%name
 Version: %version
 Release: %release
