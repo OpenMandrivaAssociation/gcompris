@@ -114,6 +114,16 @@ Requires:	locales-es
 %description sounds-es
 Spanish sounds for gcompris.
 
+%package sounds-el
+Summary:        Greek sounds for GCompris
+Group: 		Games/Other
+Requires:       %{name} = %{version}
+Provides:       %{name}-sound = %{version}
+Requires:	locales-el
+
+%description sounds-el
+Greek sounds for gcompris.
+
 %package sounds-en
 Summary:        English sounds for GCompris
 Group: 		Games/Other
@@ -264,6 +274,16 @@ Requires:       locales-so
 %description sounds-so
 Somalian sounds for gcompris.
 
+%package sounds-sr
+Summary:        Serbian sounds for GCompris
+Group:          Games/Other
+Requires:       %{name} = %{version}
+Provides:       %{name}-sound = %{version}
+Requires:       locales-sr
+
+%description sounds-sr
+Serbian sounds for gcompris.
+
 %package sounds-sv
 Summary:        Swedish sounds for GCompris
 Group:          Games/Other
@@ -399,6 +419,11 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/%{name}/boards/sounds/de/*
 %dir %_datadir/%{name}/boards/sounds/de
 
+%files sounds-el
+%defattr(-, root, root)
+%_datadir/%{name}/boards/sounds/el/*
+%dir %_datadir/%{name}/boards/sounds/el
+
 %files sounds-en
 %defattr(-, root, root)
 %_datadir/%{name}/boards/sounds/en/*
@@ -478,6 +503,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 %_datadir/%{name}/boards/sounds/so/*
 %dir %_datadir/%{name}/boards/sounds/so
+
+%files sounds-sr
+%defattr(-, root, root)
+%_datadir/%{name}/boards/sounds/sr/*
+%dir %_datadir/%{name}/boards/sounds/sr
 
 %files sounds-sv
 %defattr(-, root, root)
