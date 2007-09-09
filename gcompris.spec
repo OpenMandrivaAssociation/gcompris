@@ -1,6 +1,6 @@
 %define name	gcompris
-%define version 8.3.3
-%define release %mkrel 2
+%define version 8.4
+%define release %mkrel 1
 
 Summary: An educational game for children starting at 2.
 Name: 	%name
@@ -8,32 +8,32 @@ Version: %version
 Release: %release
 License: GPL
 Group: Games/Other
-Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.gz
+Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.bz2
 BuildRoot: %_tmppath/%name-%version-buildroot
 Buildrequires: gnuchess libogg-devel
-Buildrequires: libxml2-devel 
+Buildrequires: libxml2-devel libgnomeui2-devel
 Buildrequires: libvorbis-devel libao-devel 
 Buildrequires: ImageMagick
 BuildRequires: desktop-file-utils
 # (misc) needed for python support
 Buildrequires: gnome-python python-devel pygtk2.0-devel
 Buildrequires: texinfo tetex-texi2html libassetml-devel
-Buildrequires: SDL_mixer-devel 
 # (misc) for the need of a display for pygtk
 BuildRequires: x11-server-xvfb xauth
 BuildRequires: perl-XML-Parser
 BuildRequires: sqlite3-devel
 BuildRequires: python-pyxml
 BuildRequires: python-sqlite2
-BuildRequires: libgnomecanvas2-devel libgtk+2-devel
+BuildRequires: libgtk+2-devel
 # (misc) for fullscreen support, now it is done with xvidmode instead of xrandr
 BuildRequires: libxxf86vm-devel
+BuildRequires: gstreamer-devel
 Requires:      %{name}-sound = %{version}
 # (misc) gnuchess for the chees activitie, gnome-python-canvas for python board
 Requires:      gnuchess >= 5.02 
 Requires:      python gnome-python gnome-python-canvas pygtk2.0 python-sqlite2
 Requires:      librsvg  tuxpaint
-Requires:      gnucap
+Requires:      gnucap gstreamer
 # until 8.3 version, gcompris came with libraries
 Obsoletes:     libgcompris1.0
 URL: http://www.gcompris.net
@@ -329,6 +329,10 @@ make
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
+#Fixing desktop file to match spec
+perl -pi -e "s/Icon=.*/Icon=gcompris/g" $RPM_BUILD_ROOT%{_datadir}/applications/gcompris.desktop
+perl -pi -e "s/Icon=.*/Icon=gcompris-edit/g" $RPM_BUILD_ROOT%{_datadir}/applications/gcompris-edit.desktop
+
 desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="Game" \
@@ -358,7 +362,7 @@ rm -f $RPM_BUILD_ROOT/%{_menudir}/gcompris
 %find_lang %name
 find $RPM_BUILD_ROOT/%_datadir/%{name}/ -type d | grep -v sounds | grep -v music/background | sed 's|'$RPM_BUILD_ROOT'\(.*\)|%dir "\1" |' > %{name}.dir
 find $RPM_BUILD_ROOT/%_datadir/%{name}/ -type f | grep -v sounds | grep -v music/background | sed 's|'$RPM_BUILD_ROOT'\(.*\)|"\1"|' > %{name}.files
-find $RPM_BUILD_ROOT/%_datadir/%{name}/boards/sounds/ -type f -maxdepth 1 | sed 's|'$RPM_BUILD_ROOT'||' >> %{name}.files
+find $RPM_BUILD_ROOT/%_datadir/%{name}/boards/voices/ -type f -maxdepth 1 | sed 's|'$RPM_BUILD_ROOT'||' >> %{name}.files
 
 perl -pi -e 's|#searace1player.xml#||g' %{name}.files
 cat  %{name}.files %{name}.lang > %{name}.all
@@ -384,6 +388,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/%{name}/
 %_datadir/applications/*
 %_datadir/gnome/help/%{name}/*
+%_datadir/%name/boards/sounds/*
 %_datadir/%name/boards/sounds/chronos
 %_datadir/%name/boards/sounds/melody/
 %_datadir/%name/boards/sounds/LuneRouge/
@@ -396,126 +401,126 @@ rm -rf $RPM_BUILD_ROOT
 
 %files music
 %defattr(-, root, root)
-%_datadir/%{name}/boards/music/background/*
+%_datadir/%{name}/boards/music/*
 %dir %_datadir/%{name}/boards/music/background
 
 %files sounds-ar
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/ar/*
-%dir %_datadir/%{name}/boards/sounds/ar
+%_datadir/%{name}/boards/voices/ar/*
+%dir %_datadir/%{name}/boards/voices/ar
 
 %files sounds-cs
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/cs/*
-%dir %_datadir/%{name}/boards/sounds/cs
+%_datadir/%{name}/boards/voices/cs/*
+%dir %_datadir/%{name}/boards/voices/cs
 
 %files sounds-da
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/da/*
-%dir %_datadir/%{name}/boards/sounds/da
+%_datadir/%{name}/boards/voices/da/*
+%dir %_datadir/%{name}/boards/voices/da
 
 %files sounds-de
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/de/*
-%dir %_datadir/%{name}/boards/sounds/de
+%_datadir/%{name}/boards/voices/de/*
+%dir %_datadir/%{name}/boards/voices/de
 
 %files sounds-el
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/el/*
-%dir %_datadir/%{name}/boards/sounds/el
+%_datadir/%{name}/boards/voices/el/*
+%dir %_datadir/%{name}/boards/voices/el
 
 %files sounds-en
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/en/*
-%dir %_datadir/%{name}/boards/sounds/en
+%_datadir/%{name}/boards/voices/en/*
+%dir %_datadir/%{name}/boards/voices/en
 
 %files sounds-eu
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/eu/*
-%dir %_datadir/%{name}/boards/sounds/eu
+%_datadir/%{name}/boards/voices/eu/*
+%dir %_datadir/%{name}/boards/voices/eu
 
 %files sounds-es
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/es/*
-%dir %_datadir/%{name}/boards/sounds/es
+%_datadir/%{name}/boards/voices/es/*
+%dir %_datadir/%{name}/boards/voices/es
 
 %files sounds-fi
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/fi/*
-%dir %_datadir/%{name}/boards/sounds/fi
+%_datadir/%{name}/boards/voices/fi/*
+%dir %_datadir/%{name}/boards/voices/fi
 
 %files sounds-fr
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/fr/*
-%dir %_datadir/%{name}/boards/sounds/fr
+%_datadir/%{name}/boards/voices/fr/*
+%dir %_datadir/%{name}/boards/voices/fr
 
 %files sounds-hi
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/hi/*
-%dir %_datadir/%{name}/boards/sounds/hi
+%_datadir/%{name}/boards/voices/hi/*
+%dir %_datadir/%{name}/boards/voices/hi
 
 %files sounds-hu
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/hu/*
-%dir %_datadir/%{name}/boards/sounds/hu
+%_datadir/%{name}/boards/voices/hu/*
+%dir %_datadir/%{name}/boards/voices/hu
 
 %files sounds-id
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/id/*
-%dir %_datadir/%{name}/boards/sounds/id
+%_datadir/%{name}/boards/voices/id/*
+%dir %_datadir/%{name}/boards/voices/id
 
 %files sounds-it
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/it/*
-%dir %_datadir/%{name}/boards/sounds/it
+%_datadir/%{name}/boards/voices/it/*
+%dir %_datadir/%{name}/boards/voices/it
 
 %files sounds-mr
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/mr/*
-%dir %_datadir/%{name}/boards/sounds/mr
+%_datadir/%{name}/boards/voices/mr/*
+%dir %_datadir/%{name}/boards/voices/mr
 
 %files sounds-nb
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/nb/*
-%dir %_datadir/%{name}/boards/sounds/nb
+%_datadir/%{name}/boards/voices/nb/*
+%dir %_datadir/%{name}/boards/voices/nb
 
 %files sounds-nl
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/nl/*
-%dir %_datadir/%{name}/boards/sounds/nl
+%_datadir/%{name}/boards/voices/nl/*
+%dir %_datadir/%{name}/boards/voices/nl
 
 %files sounds-pt
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/pt/*
-%dir %_datadir/%{name}/boards/sounds/pt
+%_datadir/%{name}/boards/voices/pt/*
+%dir %_datadir/%{name}/boards/voices/pt
 
 %files sounds-pt_BR
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/pt_BR/*
-%dir %_datadir/%{name}/boards/sounds/pt_BR
+%_datadir/%{name}/boards/voices/pt_BR/*
+%dir %_datadir/%{name}/boards/voices/pt_BR
 
 %files sounds-ru
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/ru/*
-%dir %_datadir/%{name}/boards/sounds/ru
+%_datadir/%{name}/boards/voices/ru/*
+%dir %_datadir/%{name}/boards/voices/ru
 
 %files sounds-so
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/so/*
-%dir %_datadir/%{name}/boards/sounds/so
+%_datadir/%{name}/boards/voices/so/*
+%dir %_datadir/%{name}/boards/voices/so
 
 %files sounds-sr
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/sr/*
-%dir %_datadir/%{name}/boards/sounds/sr
+%_datadir/%{name}/boards/voices/sr/*
+%dir %_datadir/%{name}/boards/voices/sr
 
 %files sounds-sv
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/sv/*
-%dir %_datadir/%{name}/boards/sounds/sv
+%_datadir/%{name}/boards/voices/sv/*
+%dir %_datadir/%{name}/boards/voices/sv
 
 %files sounds-tr
 %defattr(-, root, root)
-%_datadir/%{name}/boards/sounds/tr/*
-%dir %_datadir/%{name}/boards/sounds/tr
+%_datadir/%{name}/boards/voices/tr/*
+%dir %_datadir/%{name}/boards/voices/tr
 
