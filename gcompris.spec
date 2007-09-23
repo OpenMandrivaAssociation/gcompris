@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 8.4
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: An educational game for children starting at 2.
 Name: 	%name
@@ -337,13 +337,12 @@ desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="Game" \
   --add-category="KidsGame" \
-  --add-category="X-MandrivaLinux-MoreApplications-Education" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/gcompris.desktop
 
 desktop-file-install --vendor="" \
   --remove-category="Application" \
-  --add-category="Education" \
-  --add-category="X-MandrivaLinux-MoreApplications-Education-Other" \
+  --add-category="Game" \
+  --add-category="KidsGame" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/gcompris-edit.desktop
 
 # install icons
