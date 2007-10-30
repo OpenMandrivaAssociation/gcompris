@@ -384,14 +384,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 %doc AUTHORS COPYING ChangeLog NEWS README
 %_bindir/*
-%_libdir/%{name}/
+%_libdir/%{name}
 %_datadir/applications/*
-%_datadir/gnome/help/%{name}/*
-%_datadir/%name/boards/sounds/*
-%_datadir/%name/boards/sounds/chronos
-%_datadir/%name/boards/sounds/melody/
-%_datadir/%name/boards/sounds/LuneRouge/
-%_datadir/%name/boards/sounds/memory/
+%_datadir/gnome/help/%{name}
+%dir %_datadir/%name
+%dir %_datadir/%name/boards
+%dir %_datadir/%name/boards/music
+%dir %_datadir/%name/boards/voices
+%_datadir/%name/boards/sounds
 %_datadir/pixmaps/*
 %_infodir/*
 %{_iconsdir}/hicolor/*/apps/gcompris.png
