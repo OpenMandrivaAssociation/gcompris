@@ -421,7 +421,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/*
 %_mandir/man6/*
 %_infodir/*
-%exclude %_dataidr/%{name}/boards/music
+%exclude %_datadir/%{name}/boards/music
 %exclude %_datadir/%{name}/boards/voices/ar
 %exclude %_datadir/%{name}/boards/voices/br
 %exclude %_datadir/%{name}/boards/voices/cs
