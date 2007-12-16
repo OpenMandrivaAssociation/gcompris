@@ -1,12 +1,12 @@
 %define name	gcompris
 %define version 8.4.2
-%define release %mkrel 2
+%define release %mkrel 3
 
 Summary: An educational game for children starting at 2
 Name: 	%name
 Version: %version
 Release: %release
-License: GPL
+License: GPLv2+
 Group: Games/Other
 Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.bz2
 BuildRoot: %_tmppath/%name-%version-buildroot
@@ -32,8 +32,8 @@ Requires:      %{name}-sound = %{version}-%{release}
 # (misc) gnuchess for the chees activitie, gnome-python-canvas for python board
 Requires:      gnuchess >= 5.02 
 Requires:      python gnome-python gnome-python-canvas pygtk2.0 python-sqlite2
-Requires:      librsvg  tuxpaint
-Requires:      gnucap gstreamer
+Requires:      librsvg tuxpaint
+Requires:      gnucap gstreamer0.10-plugins-good
 # until 8.3 version, gcompris came with libraries
 Obsoletes:     libgcompris1.0
 URL: http://www.gcompris.net
