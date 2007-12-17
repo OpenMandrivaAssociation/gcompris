@@ -9,7 +9,6 @@ Release: %release
 License: GPLv2+
 Group: Games/Other
 Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.bz2
-BuildRoot: %_tmppath/%name-%version-buildroot
 Buildrequires: gnuchess libogg-devel
 Buildrequires: libxml2-devel libgnomeui2-devel
 Buildrequires: libvorbis-devel libao-devel 
