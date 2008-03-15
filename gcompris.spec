@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 8.4.4
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -75,6 +75,17 @@ Conflicts:      %name < 8.4.2-2
 
 %description sounds-ar
 Arabic (Tunisia) sounds for gcompris.
+
+%package sounds-bg
+Summary:        Bulgarian sounds for GCompris
+Group:          Games/Other
+Requires:       %{name} = %{version}-%{release}
+Provides:       %{name}-sound = %{version}
+Requires:       locales-bg
+Conflicts:      %name < 8.4.4-2
+
+%description sounds-bg
+Bulgarian sounds for gcompris.
 
 %package sounds-br
 Summary:        Breton sounds for GCompris
@@ -340,6 +351,17 @@ Conflicts:      %name < 8.4.2-2
 %description sounds-tr
 Turkish sounds for gcompris.
 
+%package sounds-ur
+Summary:        Urdu sounds for GCompris
+Group:          Games/Other
+Requires:       %{name} = %{version}-%{release}
+Provides:       %{name}-sound = %{version}
+Requires:       locales-ur
+Conflicts:      %name < 8.4.4-1
+
+%description sounds-ur
+Urdu sounds for gcompris.
+
 %prep
 %setup -q -n %name-%{version}
 
@@ -423,6 +445,7 @@ rm -rf $RPM_BUILD_ROOT
 %_infodir/*
 %exclude %_datadir/%{name}/boards/music
 %exclude %_datadir/%{name}/boards/voices/ar
+%exclude %_datadir/%{name}/boards/voices/bg
 %exclude %_datadir/%{name}/boards/voices/br
 %exclude %_datadir/%{name}/boards/voices/cs
 %exclude %_datadir/%{name}/boards/voices/da
@@ -447,6 +470,7 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %_datadir/%{name}/boards/voices/sr
 %exclude %_datadir/%{name}/boards/voices/sv
 %exclude %_datadir/%{name}/boards/voices/tr
+%exclude %_datadir/%{name}/boards/voices/ur
 
 %files music
 %defattr(-, root, root)
@@ -455,6 +479,10 @@ rm -rf $RPM_BUILD_ROOT
 %files sounds-ar
 %defattr(-, root, root)
 %_datadir/%{name}/boards/voices/ar
+
+%files sounds-bg
+%defattr(-, root, root)
+%_datadir/%{name}/boards/voices/bg
 
 %files sounds-br
 %defattr(-, root, root)
@@ -551,3 +579,7 @@ rm -rf $RPM_BUILD_ROOT
 %files sounds-tr
 %defattr(-, root, root)
 %_datadir/%{name}/boards/voices/tr
+
+%files sounds-ur
+%defattr(-, root, root)
+%_datadir/%{name}/boards/voices/ur
