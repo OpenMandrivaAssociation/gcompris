@@ -1,6 +1,6 @@
 %define name	gcompris
-%define version 8.4.4
-%define release %mkrel 2
+%define version 8.4.5
+%define release %mkrel 1
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -8,7 +8,7 @@ Version: %version
 Release: %release
 License: GPLv2+
 Group: Games/Other
-Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.bz2
+Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.gz
 BuildRoot: %_tmppath/%name-%version-buildroot
 Buildrequires: gnuchess libogg-devel
 Buildrequires: libxml2-devel libgnomeui2-devel
