@@ -274,6 +274,16 @@ Conflicts:      %name < 8.4.2-2
 %description sounds-nl
 Nederland sounds for gcompris.
 
+%package sounds-nn
+Summary:        Norvegian sounds for GCompris
+Group:          Games/Other
+Requires:       %{name} = %{version}-%{release}
+Provides:       %{name}-sound = %{version}
+Requires:       locales-nn
+
+%description sounds-nn
+Norvegian sounds for gcompris.
+
 %package sounds-pt
 Summary:        Portuguese sounds for GCompris
 Group: 		Games/Other
@@ -438,11 +448,11 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/%{name}
 %_datadir/applications/*
 %_datadir/gnome/help/%{name}
-%_datadir/%name
 %_datadir/pixmaps/*
 %{_iconsdir}/hicolor/*/apps/*
 %_mandir/man6/*
 %_infodir/*
+%_datadir/%name
 %exclude %_datadir/%{name}/boards/music
 %exclude %_datadir/%{name}/boards/voices/ar
 %exclude %_datadir/%{name}/boards/voices/bg
@@ -462,6 +472,7 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %_datadir/%{name}/boards/voices/it
 %exclude %_datadir/%{name}/boards/voices/mr
 %exclude %_datadir/%{name}/boards/voices/nb
+%exclude %_datadir/%{name}/boards/voices/nn
 %exclude %_datadir/%{name}/boards/voices/nl
 %exclude %_datadir/%{name}/boards/voices/pt
 %exclude %_datadir/%{name}/boards/voices/pt_BR
@@ -551,6 +562,10 @@ rm -rf $RPM_BUILD_ROOT
 %files sounds-nl
 %defattr(-, root, root)
 %_datadir/%{name}/boards/voices/nl
+
+%files sounds-nn
+%defattr(-, root, root)
+%_datadir/%{name}/boards/voices/nn
 
 %files sounds-pt
 %defattr(-, root, root)
