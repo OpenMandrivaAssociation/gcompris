@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 8.4.5
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: An educational game for children starting at 2
 Name: 	%name
