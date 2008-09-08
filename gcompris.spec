@@ -1,6 +1,6 @@
 %define name	gcompris
-%define version 8.4.5
-%define release %mkrel 3
+%define version 8.4.6
+%define release %mkrel 1
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -9,7 +9,8 @@ Release: %release
 License: GPLv2+
 Group: Games/Other
 Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.gz
-Patch0: gcompris-8.4.5-prefix.patch
+Patch0:         gcompris-8.1-icon.patch
+Patch1:         gcompris-8.3.2-tuxpaint-fullscreen.patch
 BuildRoot: %_tmppath/%name-%version-buildroot
 Buildrequires: gnuchess libogg-devel
 Buildrequires: libxml2-devel libgnomeui2-devel
@@ -376,7 +377,7 @@ Urdu sounds for gcompris.
 %prep
 %setup -q -n %name-%{version}
 %patch0 -p1
-
+%patch1 -p1
 rm -rf boards/*.rej
 
 %build
