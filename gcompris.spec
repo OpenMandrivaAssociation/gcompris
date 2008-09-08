@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 8.4.6
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -198,6 +198,17 @@ Conflicts:      %name < 8.4.2-2
 
 %description sounds-fr
 French sounds for gcompris.
+
+%package sounds-he
+Summary:        Hebrew soundsfor GCompris
+Group:          Games/Other
+Requires:       %{name} = %{version}-%{release}
+Provides:       %{name}-sound = %{version}
+Requires:       locales-he
+Conflicts:      %name < 8.4.6-2
+
+%description sounds-he
+Hebrew sounds for gcompris.
 
 %package sounds-hi
 Summary:	Hindi soundsfor GCompris
@@ -473,6 +484,7 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %_datadir/%{name}/boards/voices/eu
 %exclude %_datadir/%{name}/boards/voices/fi
 %exclude %_datadir/%{name}/boards/voices/fr
+%exclude %_datadir/%{name}/boards/voices/he
 %exclude %_datadir/%{name}/boards/voices/hi
 %exclude %_datadir/%{name}/boards/voices/hu
 %exclude %_datadir/%{name}/boards/voices/id
@@ -541,6 +553,10 @@ rm -rf $RPM_BUILD_ROOT
 %files sounds-fr
 %defattr(-, root, root)
 %_datadir/%{name}/boards/voices/fr
+
+%files sounds-he
+%defattr(-, root, root)
+%_datadir/%{name}/boards/voices/he
 
 %files sounds-hi
 %defattr(-, root, root)
