@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 8.4.6
-%define release %mkrel 2
+%define release %mkrel 3
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -17,6 +17,7 @@ Buildrequires: libxml2-devel libgnomeui2-devel
 Buildrequires: libvorbis-devel libao-devel 
 Buildrequires: ImageMagick
 BuildRequires: desktop-file-utils
+BuildRequires: libgnet2-devel
 # (misc) needed for python support
 Buildrequires: gnome-python python-devel pygtk2.0-devel
 Buildrequires: texinfo tetex-texi2html libassetml-devel
@@ -389,23 +390,17 @@ Urdu sounds for gcompris.
 %setup -q -n %name-%{version}
 %patch0 -p1
 %patch1 -p1
-rm -rf boards/*.rej
 
 %build
 %ifarch alpha
   MYARCH_FLAGS="--host=alpha-redhat-linux"
 %endif
-XDISPLAY=$(i=2; while [ -f /tmp/.X$i-lock ]; do i=$(($i+1)); done; echo $i)
-%{_prefix}/bin/Xvfb :$XDISPLAY &
-export DISPLAY=:$XDISPLAY
-xauth add $DISPLAY . EE
 
-%configure
+%configure2_5x --enable-py-build-only --enable-gnet
 
 # 6.0-1mdk, (misc)
 # paralel build is broken
 make
-#kill $(cat /tmp/.X$XDISPLAY-lock)
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -419,13 +414,7 @@ desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="Game" \
   --add-category="KidsGame" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/gcompris.desktop
-
-desktop-file-install --vendor="" \
-  --remove-category="Application" \
-  --add-category="Game" \
-  --add-category="KidsGame" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/gcompris-edit.desktop
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*.desktop
 
 # install icons
 mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
