@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 8.4.6
-%define release %mkrel 3
+%define release %mkrel 4
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -407,14 +407,21 @@ rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
 #Fixing desktop file to match spec
-perl -pi -e "s/Icon=.*/Icon=gcompris/g" $RPM_BUILD_ROOT%{_datadir}/applications/gcompris.desktop
-perl -pi -e "s/Icon=.*/Icon=gcompris-edit/g" $RPM_BUILD_ROOT%{_datadir}/applications/gcompris-edit.desktop
+perl -pi -e "s/Icon=.*/Icon=gcompris/g" $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
+perl -pi -e "s/(Categories=).*/$1/" $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
+perl -pi -e "s/Icon=.*/Icon=gcompris-edit/g" $RPM_BUILD_ROOT%{_datadir}/applications/%{name}-edit.desktop
 
 desktop-file-install --vendor="" \
   --remove-category="Application" \
-  --add-category="Game" \
-  --add-category="KidsGame" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*.desktop
+  --add-category="Education" \
+  --add-category="X-MandrivaLinux-CrossDesktop" \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
+
+desktop-file-install --vendor="" \
+  --remove-category="Application" \
+  --add-category="Education" \
+  --add-category="X-MandrivaLinux-CrossDesktop" \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/%{name}-edit.desktop
 
 # install icons
 mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
@@ -427,7 +434,7 @@ for size in 16x16 32x32; do
 done
 
 # remove unwanted files
-rm -f $RPM_BUILD_ROOT/%{_menudir}/gcompris
+rm -f $RPM_BUILD_ROOT/%{_menudir}/%{name}
 
 %find_lang %name
 
