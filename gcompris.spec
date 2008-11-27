@@ -31,6 +31,7 @@ BuildRequires: libgtk+2-devel
 # (misc) for fullscreen support, now it is done with xvidmode instead of xrandr
 BuildRequires: libxxf86vm-devel
 BuildRequires: libgstreamer-devel >= 0.10.0
+BuildRequires: intltool
 Requires:      %{name}-sound = %{version}-%{release}
 # (misc) gnuchess for the chees activitie, gnome-python-canvas for python board
 Requires:      gnuchess >= 5.02 
