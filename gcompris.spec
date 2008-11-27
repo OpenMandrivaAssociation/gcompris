@@ -473,7 +473,6 @@ rm -rf $RPM_BUILD_ROOT
 %_bindir/*
 %_libdir/%{name}
 %_datadir/applications/*
-%_datadir/gnome/help/%{name}
 %_datadir/pixmaps/*
 %{_iconsdir}/hicolor/*/apps/*
 %_mandir/man6/*
