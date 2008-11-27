@@ -1,6 +1,6 @@
 %define name	gcompris
-%define version 8.4.6
-%define release %mkrel 4
+%define version 8.4.8
+%define release %mkrel 1
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -298,6 +298,17 @@ Requires:       locales-nn
 %description sounds-nn
 Norvegian sounds for gcompris.
 
+%package sounds-pa
+Summary:        Punjabi sounds for GCompris
+Group:          Games/Other
+Requires:       %{name} = %{version}-%{release}
+Provides:       %{name}-sound = %{version}
+Requires:       locales-pa
+Conflicts:      %name < 8.4.2-2
+
+%description sounds-pa
+Punjabi sounds for gcompris.
+
 %package sounds-pt
 Summary:        Portuguese sounds for GCompris
 Group: 		Games/Other
@@ -489,6 +500,7 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %_datadir/%{name}/boards/voices/nb
 %exclude %_datadir/%{name}/boards/voices/nn
 %exclude %_datadir/%{name}/boards/voices/nl
+%exclude %_datadir/%{name}/boards/voices/pa
 %exclude %_datadir/%{name}/boards/voices/pt
 %exclude %_datadir/%{name}/boards/voices/pt_BR
 %exclude %_datadir/%{name}/boards/voices/ru
@@ -585,6 +597,10 @@ rm -rf $RPM_BUILD_ROOT
 %files sounds-nn
 %defattr(-, root, root)
 %_datadir/%{name}/boards/voices/nn
+
+%files sounds-pa
+%defattr(-, root, root)
+%_datadir/%{name}/boards/voices/pa
 
 %files sounds-pt
 %defattr(-, root, root)
