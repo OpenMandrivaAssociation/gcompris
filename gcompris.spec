@@ -15,7 +15,7 @@ BuildRoot: %_tmppath/%name-%version-buildroot
 Buildrequires: gnuchess libogg-devel
 Buildrequires: libxml2-devel libgnomeui2-devel
 Buildrequires: libvorbis-devel libao-devel 
-Buildrequires: ImageMagick
+Buildrequires: imagemagick
 BuildRequires: desktop-file-utils
 BuildRequires: libgnet2-devel
 # (misc) needed for python support
