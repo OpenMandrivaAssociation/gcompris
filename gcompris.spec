@@ -1,13 +1,13 @@
 %define name	gcompris
 %define version 8.4.9
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: An educational game for children starting at 2
 Name: 	%name
 Version: %version
 Release: %release
 License: GPLv2+
-Group: Games/Other
+Group: Education
 Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.gz
 Patch0:         gcompris-8.1-icon.patch
 Patch1:         gcompris-8.3.2-tuxpaint-fullscreen.patch
@@ -62,7 +62,7 @@ You should install it only if you have children using this computer.
 
 %package music
 Summary:        Background music for GCompris
-Group:          Games/Other
+Group:          Education
 Provides:       %{name}-music = %{version}
 Conflicts:	%name < 8.4.2-2
 
@@ -71,7 +71,7 @@ Background music for gcompris.
 
 %package sounds-ar
 Summary:        Arabic (Tunisia) sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-ar
@@ -82,7 +82,7 @@ Arabic (Tunisia) sounds for gcompris.
 
 %package sounds-bg
 Summary:        Bulgarian sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-bg
@@ -93,7 +93,7 @@ Bulgarian sounds for gcompris.
 
 %package sounds-br
 Summary:        Breton sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-br
@@ -104,7 +104,7 @@ Breton sounds for gcompris.
 
 %package sounds-cs
 Summary:        Czech sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-cs
@@ -115,7 +115,7 @@ Czech sounds for gcompris.
 
 %package sounds-de
 Summary:        German sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-de
@@ -126,7 +126,7 @@ German sounds for gcompris.
 
 %package sounds-da
 Summary:        Danish sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-da
@@ -137,7 +137,7 @@ Danish sounds for gcompris.
 
 %package sounds-es
 Summary:        Spanish sounds for GCompris
-Group: 		Games/Other
+Group: 		Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-es
@@ -148,7 +148,7 @@ Spanish sounds for gcompris.
 
 %package sounds-el
 Summary:        Greek sounds for GCompris
-Group: 		Games/Other
+Group: 		Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-el
@@ -159,7 +159,7 @@ Greek sounds for gcompris.
 
 %package sounds-en
 Summary:        English sounds for GCompris
-Group: 		Games/Other
+Group: 		Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-en
@@ -170,7 +170,7 @@ English sounds for gcompris.
 
 %package sounds-eu
 Summary:        Basque sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-eu
@@ -181,7 +181,7 @@ Basque sounds for gcompris.
 
 %package sounds-fi
 Summary:        Finnish sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-fi
@@ -192,7 +192,7 @@ Finnish sounds for gcompris.
 
 %package sounds-fr
 Summary:        French sounds for GCompris
-Group: 		Games/Other
+Group: 		Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-fr
@@ -203,7 +203,7 @@ French sounds for gcompris.
 
 %package sounds-he
 Summary:        Hebrew soundsfor GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-he
@@ -214,7 +214,7 @@ Hebrew sounds for gcompris.
 
 %package sounds-hi
 Summary:	Hindi soundsfor GCompris
-Group:		Games/Other
+Group:		Education
 Requires:	%{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-hi
@@ -225,7 +225,7 @@ Hindi sounds for gcompris.
 
 %package sounds-hu
 Summary:        Hungarian sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-hu
@@ -236,7 +236,7 @@ Hungarian sounds for gcompris.
 
 %package sounds-id
 Summary:        Indonesian sounds for GCompris
-Group: 		Games/Other
+Group: 		Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-id
@@ -247,7 +247,7 @@ Indonesian sounds for gcompris.
 
 %package sounds-it
 Summary:        Italian sounds for GCompris
-Group: 		Games/Other
+Group: 		Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-it
@@ -258,7 +258,7 @@ Italian sounds for gcompris.
 
 %package sounds-mr
 Summary:        Marathi sounds for GCompris
-Group: 		Games/Other
+Group: 		Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-mr
@@ -269,7 +269,7 @@ Marathi sounds for gcompris.
 
 %package sounds-nb
 Summary:        Norvegian Bokmal sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-no
@@ -280,7 +280,7 @@ Norvegian Bökmal sounds for gcompris.
 
 %package sounds-nl
 Summary:        Nederland sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-nl
@@ -291,7 +291,7 @@ Nederland sounds for gcompris.
 
 %package sounds-nn
 Summary:        Norvegian sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-nn
@@ -301,7 +301,7 @@ Norvegian sounds for gcompris.
 
 %package sounds-pa
 Summary:        Punjabi sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-pa
@@ -312,7 +312,7 @@ Punjabi sounds for gcompris.
 
 %package sounds-pt
 Summary:        Portuguese sounds for GCompris
-Group: 		Games/Other
+Group: 		Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-pt
@@ -323,7 +323,7 @@ Portuguese sounds for gcompris.
 
 %package sounds-pt_BR
 Summary:        Brasilian Portuguese sounds for GCompris
-Group: 		Games/Other
+Group: 		Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:	locales-pt
@@ -334,7 +334,7 @@ Brasilian Portuguese sounds for gcompris.
 
 %package sounds-ru
 Summary:        Russian sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-ru
@@ -345,7 +345,7 @@ Russian sounds for gcompris.
 
 %package sounds-so
 Summary:        Somalian sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-so
@@ -356,7 +356,7 @@ Somalian sounds for gcompris.
 
 %package sounds-sr
 Summary:        Serbian sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-sr
@@ -367,7 +367,7 @@ Serbian sounds for gcompris.
 
 %package sounds-sv
 Summary:        Swedish sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-sv
@@ -378,7 +378,7 @@ Swedish sounds for gcompris.
 
 %package sounds-tr
 Summary:        Turkish sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-tr
@@ -389,7 +389,7 @@ Turkish sounds for gcompris.
 
 %package sounds-ur
 Summary:        Urdu sounds for GCompris
-Group:          Games/Other
+Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-ur
