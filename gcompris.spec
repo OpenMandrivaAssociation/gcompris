@@ -9,8 +9,9 @@ Release: %release
 License: GPLv2+
 Group: Education
 Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.gz
-Patch0:         gcompris-8.1-icon.patch
+Patch0:         gcompris-8.4.13-icon.patch
 Patch1:         gcompris-8.3.2-tuxpaint-fullscreen.patch
+Patch2:		gcompris-8.4.13-linkage.patch
 BuildRoot: %_tmppath/%name-%version-buildroot
 Buildrequires: gnuchess libogg-devel
 Buildrequires: libxml2-devel libgnomeui2-devel
@@ -402,6 +403,7 @@ Urdu sounds for gcompris.
 %setup -q -n %name-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p0
 
 %build
 %ifarch alpha
