@@ -1,5 +1,5 @@
 %define name	gcompris
-%define version 8.4.13
+%define version 9.0
 %define release %mkrel 1
 
 Summary: An educational game for children starting at 2
@@ -9,9 +9,10 @@ Release: %release
 License: GPLv2+
 Group: Education
 Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.gz
-Patch0:         gcompris-8.4.13-icon.patch
-Patch1:         gcompris-8.3.2-tuxpaint-fullscreen.patch
-Patch2:		gcompris-8.4.13-linkage.patch
+# trem : no more needed
+# Patch0:         gcompris-8.4.13-icon.patch
+# Patch1:         gcompris-9.0-tuxpaint-fullscreen.patch
+Patch2:		gcompris-9.0-linkage.patch
 BuildRoot: %_tmppath/%name-%version-buildroot
 Buildrequires: gnuchess libogg-devel
 Buildrequires: libxml2-devel libgnomeui2-devel
@@ -32,7 +33,7 @@ BuildRequires: libgtk+2-devel
 # (misc) for fullscreen support, now it is done with xvidmode instead of xrandr
 BuildRequires: libxxf86vm-devel
 BuildRequires: libgstreamer-devel >= 0.10.0
-BuildRequires: intltool
+BuildRequires: intltool librsvg-devel
 Requires:      %{name}-sound = %{version}-%{release}
 # (misc) gnuchess for the chees activitie, gnome-python-canvas for python board
 Requires:      gnuchess >= 5.02 
@@ -401,9 +402,10 @@ Urdu sounds for gcompris.
 
 %prep
 %setup -q -n %name-%{version}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p0
+# trem : no more needed
+#patch0 -p1
+#patch1 -p1
+%patch2 -p1
 
 %build
 %ifarch alpha
@@ -480,6 +482,7 @@ rm -rf $RPM_BUILD_ROOT
 %_mandir/man6/*
 %_infodir/*
 %_datadir/%name
+%_datadir/gnome/help/%{name}/eu/*
 %exclude %_datadir/%{name}/boards/music
 %exclude %_datadir/%{name}/boards/voices/ar
 %exclude %_datadir/%{name}/boards/voices/bg
