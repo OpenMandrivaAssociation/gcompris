@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 9.0
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -136,6 +136,17 @@ Conflicts:      %name < 8.4.2-2
 
 %description sounds-da
 Danish sounds for gcompris.
+
+%package sounds-eo
+Summary:        Esperanto sounds for GCompris
+Group:          Education
+Requires:       %{name} = %{version}-%{release}
+Provides:       %{name}-sound = %{version}
+Requires:       locales-eo
+Conflicts:      %name < 9.0-2
+
+%description sounds-eo
+Esperanto sounds for gcompris.
 
 %package sounds-es
 Summary:        Spanish sounds for GCompris
@@ -492,6 +503,7 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %_datadir/%{name}/boards/voices/de
 %exclude %_datadir/%{name}/boards/voices/el
 %exclude %_datadir/%{name}/boards/voices/en
+%exclude %_datadir/%{name}/boards/voices/eo
 %exclude %_datadir/%{name}/boards/voices/es
 %exclude %_datadir/%{name}/boards/voices/eu
 %exclude %_datadir/%{name}/boards/voices/fi
@@ -550,6 +562,10 @@ rm -rf $RPM_BUILD_ROOT
 %files sounds-en
 %defattr(-, root, root)
 %_datadir/%{name}/boards/voices/en
+
+%files sounds-eo
+%defattr(-, root, root)
+%_datadir/%{name}/boards/voices/eo
 
 %files sounds-eu
 %defattr(-, root, root)
