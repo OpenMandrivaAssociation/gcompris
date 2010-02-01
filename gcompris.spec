@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 9.1
-%define release %mkrel 2
+%define release %mkrel 3
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -417,7 +417,7 @@ Group:          Education
 Requires:       %{name} = %{version}-%{release}
 Provides:       %{name}-sound = %{version}
 Requires:       locales-zh_CN
-Conflicts:      %name < 8.9.1-2
+Conflicts:      %name < 9.1-2
 
 %description sounds-zh_CN
 Simplified Chinese sounds for gcompris.
