@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 9.1
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -411,6 +411,17 @@ Conflicts:      %name < 8.4.4-1
 %description sounds-ur
 Urdu sounds for gcompris.
 
+%package sounds-zh_CN
+Summary:        Simplified Chinese sounds for GCompris
+Group:          Education
+Requires:       %{name} = %{version}-%{release}
+Provides:       %{name}-sound = %{version}
+Requires:       locales-zh_CN
+Conflicts:      %name < 8.9.1-2
+
+%description sounds-zh_CN
+Simplified Chinese sounds for gcompris.
+
 %prep
 %setup -q -n %name-%{version}
 # trem : no more needed
@@ -526,6 +537,7 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %_datadir/%{name}/boards/voices/sv
 %exclude %_datadir/%{name}/boards/voices/tr
 %exclude %_datadir/%{name}/boards/voices/ur
+%exclude %_datadir/%{name}/boards/voices/zh_CN
 
 %files music
 %defattr(-, root, root)
@@ -654,3 +666,7 @@ rm -rf $RPM_BUILD_ROOT
 %files sounds-ur
 %defattr(-, root, root)
 %_datadir/%{name}/boards/voices/ur
+
+%files sounds-zh_CN
+%defattr(-, root, root)
+%_datadir/%{name}/boards/voices/zh_CN
