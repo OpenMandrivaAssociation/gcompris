@@ -1,6 +1,6 @@
 %define name	gcompris
-%define version 9.1
-%define release %mkrel 3
+%define version 9.2
+%define release %mkrel 1
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -8,7 +8,7 @@ Version: %version
 Release: %release
 License: GPLv2+
 Group: Education
-Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.gz
+Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}-2.tar.gz
 # trem : no more needed
 # Patch0:         gcompris-8.4.13-icon.patch
 # Patch1:         gcompris-9.0-tuxpaint-fullscreen.patch
