@@ -13,6 +13,8 @@ Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}-2.tar.gz
 # Patch0:         gcompris-8.4.13-icon.patch
 # Patch1:         gcompris-9.0-tuxpaint-fullscreen.patch
 Patch2:		gcompris-9.0-linkage.patch
+# (fc) 9.2-2mdv fix build with latest gtk (Mdv bug #58875) (Luis Medinas)
+Patch3:		gcompris-9.2-fixgoocanvas.patch
 BuildRoot: %_tmppath/%name-%version-buildroot
 Buildrequires: gnuchess libogg-devel
 Buildrequires: libxml2-devel libgnomeui2-devel
@@ -428,6 +430,7 @@ Simplified Chinese sounds for gcompris.
 #patch0 -p1
 #patch1 -p1
 %patch2 -p1
+%patch3 -p1 -b .fix-goocanvas
 
 %build
 %ifarch alpha
