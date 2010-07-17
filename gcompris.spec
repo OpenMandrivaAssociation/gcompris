@@ -1,6 +1,6 @@
 %define name	gcompris
-%define version 9.2
-%define release %mkrel 2
+%define version 9.3
+%define release %mkrel 1
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -8,13 +8,11 @@ Version: %version
 Release: %release
 License: GPLv2+
 Group: Education
-Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}-2.tar.gz
+Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.gz
 # trem : no more needed
 # Patch0:         gcompris-8.4.13-icon.patch
 # Patch1:         gcompris-9.0-tuxpaint-fullscreen.patch
 Patch2:		gcompris-9.0-linkage.patch
-# (fc) 9.2-2mdv fix build with latest gtk (Mdv bug #58875) (Luis Medinas)
-Patch3:		gcompris-9.2-fixgoocanvas.patch
 BuildRoot: %_tmppath/%name-%version-buildroot
 Buildrequires: gnuchess libogg-devel
 Buildrequires: libxml2-devel libgnomeui2-devel
@@ -72,6 +70,16 @@ Conflicts:	%name < 8.4.2-2
 
 %description music
 Background music for gcompris.
+
+%package sounds-ast
+Summary:        Asturian sounds for GCompris
+Group:          Education
+Requires:       %{name} = %{version}-%{release}
+Provides:       %{name}-sound = %{version}
+Requires:       locales-ast
+
+%description sounds-ast
+Asturian sounds for gcompris.
 
 %package sounds-ar
 Summary:        Arabic (Tunisia) sounds for GCompris
@@ -430,7 +438,6 @@ Simplified Chinese sounds for gcompris.
 #patch0 -p1
 #patch1 -p1
 %patch2 -p1
-%patch3 -p1 -b .fix-goocanvas
 
 %build
 %ifarch alpha
@@ -439,9 +446,7 @@ Simplified Chinese sounds for gcompris.
 
 %configure2_5x --enable-py-build-only --enable-gnet
 
-# 6.0-1mdk, (misc)
-# paralel build is broken
-make
+%make
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -496,7 +501,7 @@ rm -rf $RPM_BUILD_ROOT
 %preun
 %_remove_install_info %{name}.info
 
-%files -f  %{name}.lang
+%files -f %{name}.lang
 %defattr(-, root, root)
 %doc AUTHORS COPYING ChangeLog NEWS README
 %_bindir/*
@@ -510,6 +515,7 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/gnome/help/%{name}/eu/*
 %exclude %_datadir/%{name}/boards/music
 %exclude %_datadir/%{name}/boards/voices/ar
+%exclude %_datadir/%{name}/boards/voices/ast
 %exclude %_datadir/%{name}/boards/voices/bg
 %exclude %_datadir/%{name}/boards/voices/br
 %exclude %_datadir/%{name}/boards/voices/cs
@@ -549,6 +555,10 @@ rm -rf $RPM_BUILD_ROOT
 %files sounds-ar
 %defattr(-, root, root)
 %_datadir/%{name}/boards/voices/ar
+
+%files sounds-ast
+%defattr(-, root, root)
+%_datadir/%{name}/boards/voices/ast
 
 %files sounds-bg
 %defattr(-, root, root)
