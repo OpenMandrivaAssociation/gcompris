@@ -1,6 +1,6 @@
 %define name	gcompris
-%define version 9.3
-%define release %mkrel 2
+%define version 9.5
+%define release %mkrel 1
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -366,6 +366,16 @@ Conflicts:      %name < 8.4.2-2
 %description sounds-ru
 Russian sounds for gcompris.
 
+%package sounds-sl
+Summary:        Slovenian sounds for GCompris
+Group:          Education
+Requires:       %{name} = %{version}-%{release}
+Provides:       %{name}-sound = %{version}
+Requires:       locales-sl
+
+%description sounds-sl
+Slovenian sounds for gcompris.
+
 %package sounds-so
 Summary:        Somalian sounds for GCompris
 Group:          Education
@@ -541,6 +551,7 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %_datadir/%{name}/boards/voices/pt
 %exclude %_datadir/%{name}/boards/voices/pt_BR
 %exclude %_datadir/%{name}/boards/voices/ru
+%exclude %_datadir/%{name}/boards/voices/sl
 %exclude %_datadir/%{name}/boards/voices/so
 %exclude %_datadir/%{name}/boards/voices/sr
 %exclude %_datadir/%{name}/boards/voices/sv
@@ -659,6 +670,10 @@ rm -rf $RPM_BUILD_ROOT
 %files sounds-ru
 %defattr(-, root, root)
 %_datadir/%{name}/boards/voices/ru
+
+%files sounds-sl
+%defattr(-, root, root)
+%_datadir/%{name}/boards/voices/sl
 
 %files sounds-so
 %defattr(-, root, root)
