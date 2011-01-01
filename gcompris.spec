@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 9.5
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: An educational game for children starting at 2
 Name: 	%name
@@ -75,7 +75,7 @@ Background music for gcompris.
 Summary:        Asturian sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-ast
 
 %description sounds-ast
@@ -85,7 +85,7 @@ Asturian sounds for gcompris.
 Summary:        Arabic (Tunisia) sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-ar
 Conflicts:      %name < 8.4.2-2
 
@@ -96,7 +96,7 @@ Arabic (Tunisia) sounds for gcompris.
 Summary:        Bulgarian sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-bg
 Conflicts:      %name < 8.4.4-2
 
@@ -107,7 +107,7 @@ Bulgarian sounds for gcompris.
 Summary:        Breton sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-br
 Conflicts:      %name < 8.4.2-2
 
@@ -118,7 +118,7 @@ Breton sounds for gcompris.
 Summary:        Czech sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-cs
 Conflicts:      %name < 8.4.2-2
 
@@ -129,7 +129,7 @@ Czech sounds for gcompris.
 Summary:        German sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-de
 Conflicts:      %name < 8.4.2-2
 
@@ -140,7 +140,7 @@ German sounds for gcompris.
 Summary:        Danish sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-da
 Conflicts:      %name < 8.4.2-2
 
@@ -151,7 +151,7 @@ Danish sounds for gcompris.
 Summary:        Esperanto sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-eo
 Conflicts:      %name < 9.0-2
 
@@ -162,7 +162,7 @@ Esperanto sounds for gcompris.
 Summary:        Spanish sounds for GCompris
 Group: 		Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-es
 Conflicts:      %name < 8.4.2-2
 
@@ -173,7 +173,7 @@ Spanish sounds for gcompris.
 Summary:        Greek sounds for GCompris
 Group: 		Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-el
 Conflicts:      %name < 8.4.2-2
 
@@ -184,7 +184,7 @@ Greek sounds for gcompris.
 Summary:        English sounds for GCompris
 Group: 		Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-en
 Conflicts:      %name < 8.4.2-2
 
@@ -195,7 +195,7 @@ English sounds for gcompris.
 Summary:        Basque sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-eu
 Conflicts:      %name < 8.4.2-2
 
@@ -206,7 +206,7 @@ Basque sounds for gcompris.
 Summary:        Finnish sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-fi
 Conflicts:      %name < 8.4.2-2
 
@@ -217,7 +217,7 @@ Finnish sounds for gcompris.
 Summary:        French sounds for GCompris
 Group: 		Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-fr
 Conflicts:      %name < 8.4.2-2
 
@@ -228,7 +228,7 @@ French sounds for gcompris.
 Summary:        Hebrew soundsfor GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-he
 Conflicts:      %name < 8.4.6-2
 
@@ -239,7 +239,7 @@ Hebrew sounds for gcompris.
 Summary:	Hindi soundsfor GCompris
 Group:		Education
 Requires:	%{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-hi
 Conflicts:      %name < 8.4.2-2
 
@@ -250,7 +250,7 @@ Hindi sounds for gcompris.
 Summary:        Hungarian sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-hu
 Conflicts:      %name < 8.4.2-2
 
@@ -261,7 +261,7 @@ Hungarian sounds for gcompris.
 Summary:        Indonesian sounds for GCompris
 Group: 		Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-id
 Conflicts:      %name < 8.4.2-2
 
@@ -272,7 +272,7 @@ Indonesian sounds for gcompris.
 Summary:        Italian sounds for GCompris
 Group: 		Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-it
 Conflicts:      %name < 8.4.2-2
 
@@ -283,7 +283,7 @@ Italian sounds for gcompris.
 Summary:        Marathi sounds for GCompris
 Group: 		Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-mr
 Conflicts:      %name < 8.4.2-2
 
@@ -294,7 +294,7 @@ Marathi sounds for gcompris.
 Summary:        Norvegian Bokmal sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-no
 Conflicts:      %name < 8.4.2-2
 
@@ -305,7 +305,7 @@ Norvegian Bökmal sounds for gcompris.
 Summary:        Nederland sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-nl
 Conflicts:      %name < 8.4.2-2
 
@@ -316,7 +316,7 @@ Nederland sounds for gcompris.
 Summary:        Norvegian sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-nn
 
 %description sounds-nn
@@ -326,7 +326,7 @@ Norvegian sounds for gcompris.
 Summary:        Punjabi sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-pa
 Conflicts:      %name < 8.4.2-2
 
@@ -337,7 +337,7 @@ Punjabi sounds for gcompris.
 Summary:        Portuguese sounds for GCompris
 Group: 		Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-pt
 Conflicts:      %name < 8.4.2-2
 
@@ -348,7 +348,7 @@ Portuguese sounds for gcompris.
 Summary:        Brasilian Portuguese sounds for GCompris
 Group: 		Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:	locales-pt
 Conflicts:      %name < 8.4.2-2
 
@@ -359,7 +359,7 @@ Brasilian Portuguese sounds for gcompris.
 Summary:        Russian sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-ru
 Conflicts:      %name < 8.4.2-2
 
@@ -370,7 +370,7 @@ Russian sounds for gcompris.
 Summary:        Slovenian sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-sl
 
 %description sounds-sl
@@ -380,7 +380,7 @@ Slovenian sounds for gcompris.
 Summary:        Somalian sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-so
 Conflicts:      %name < 8.4.2-2
 
@@ -391,7 +391,7 @@ Somalian sounds for gcompris.
 Summary:        Serbian sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-sr
 Conflicts:      %name < 8.4.2-2
 
@@ -402,7 +402,7 @@ Serbian sounds for gcompris.
 Summary:        Swedish sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-sv
 Conflicts:      %name < 8.4.2-2
 
@@ -413,7 +413,7 @@ Swedish sounds for gcompris.
 Summary:        Turkish sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-tr
 Conflicts:      %name < 8.4.2-2
 
@@ -424,7 +424,7 @@ Turkish sounds for gcompris.
 Summary:        Urdu sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-ur
 Conflicts:      %name < 8.4.4-1
 
@@ -435,7 +435,7 @@ Urdu sounds for gcompris.
 Summary:        Simplified Chinese sounds for GCompris
 Group:          Education
 Requires:       %{name} = %{version}-%{release}
-Provides:       %{name}-sound = %{version}
+Provides:       %{name}-sound = %{version}-%{release}
 Requires:       locales-zh_CN
 Conflicts:      %name < 9.1-2
 
