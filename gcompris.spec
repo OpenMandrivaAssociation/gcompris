@@ -1,19 +1,20 @@
 %define name	gcompris
-%define version 9.5
-%define release %mkrel 2
+%define version 9.6.1
+%define release %mkrel 1
 
 Summary: An educational game for children starting at 2
-Name: 	%name
-Version: %version
-Release: %release
+Name: 	 %{name}
+Version: %{version}
+Release: %{release}
 License: GPLv2+
-Group: Education
+Group:   Education
 Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.gz
-# trem : no more needed
-# Patch0:         gcompris-8.4.13-icon.patch
-# Patch1:         gcompris-9.0-tuxpaint-fullscreen.patch
+Source1: geo_country_italy.tar.bz2
+Patch0:		geo_country_italy.patch
 Patch2:		gcompris-9.0-linkage.patch
 BuildRoot: %_tmppath/%name-%version-buildroot
+# anaselli: added to patch Makefile.am needed to add Italy map
+Buildrequires: gnome-common automake autoconf libtool-base
 Buildrequires: gnuchess libogg-devel
 Buildrequires: libxml2-devel libgnomeui2-devel
 Buildrequires: libvorbis-devel libao-devel 
@@ -70,6 +71,16 @@ Conflicts:	%name < 8.4.2-2
 
 %description music
 Background music for gcompris.
+
+%package sounds-af
+Summary:        Afrikaans sounds for GCompris
+Group:          Education
+Requires:       %{name} = %{version}-%{release}
+Provides:       %{name}-sound = %{version}-%{release}
+Requires:       locales-af
+
+%description sounds-af
+Afrikaans sounds for gcompris.
 
 %package sounds-ast
 Summary:        Asturian sounds for GCompris
@@ -444,9 +455,9 @@ Simplified Chinese sounds for gcompris.
 
 %prep
 %setup -q -n %name-%{version}
-# trem : no more needed
-#patch0 -p1
-#patch1 -p1
+%setup -T -D -a 1
+
+%patch0 -p1
 %patch2 -p1
 
 %build
@@ -454,6 +465,8 @@ Simplified Chinese sounds for gcompris.
   MYARCH_FLAGS="--host=alpha-redhat-linux"
 %endif
 
+# anaselli: added due to a patched Makefile.am needed to add Italy map
+autoreconf
 %configure2_5x --enable-py-build-only --enable-gnet
 
 %make
@@ -521,9 +534,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/*
 %_mandir/man6/*
 %_infodir/*
-%_datadir/%name
+%_datadir/%{name}
 %_datadir/gnome/help/%{name}/eu/*
 %exclude %_datadir/%{name}/boards/music
+%exclude %_datadir/%{name}/boards/voices/af
 %exclude %_datadir/%{name}/boards/voices/ar
 %exclude %_datadir/%{name}/boards/voices/ast
 %exclude %_datadir/%{name}/boards/voices/bg
@@ -562,6 +576,10 @@ rm -rf $RPM_BUILD_ROOT
 %files music
 %defattr(-, root, root)
 %_datadir/%{name}/boards/music
+
+%files sounds-af
+%defattr(-, root, root)
+%_datadir/%{name}/boards/voices/af
 
 %files sounds-ar
 %defattr(-, root, root)
