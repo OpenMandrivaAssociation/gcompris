@@ -10,7 +10,8 @@ License: GPLv2+
 Group:   Education
 Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.gz
 Source1: geo_country_italy.tar.bz2
-Patch0:		geo_country_italy.patch
+Patch0:		configure-disable-Werror.patch
+Patch1:		geo_country_italy.patch
 Patch2:		gcompris-9.0-linkage.patch
 BuildRoot: %_tmppath/%name-%version-buildroot
 # anaselli: added to patch Makefile.am needed to add Italy map
@@ -23,7 +24,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: libgnet2-devel
 # (misc) needed for python support
 Buildrequires: gnome-python python-devel pygtk2.0-devel
-Buildrequires: texinfo tetex-texi2html libassetml-devel
+Buildrequires: texinfo texi2html libassetml-devel
 # (misc) for the need of a display for pygtk
 BuildRequires: x11-server-xvfb xauth
 BuildRequires: perl-XML-Parser
@@ -457,7 +458,9 @@ Simplified Chinese sounds for gcompris.
 %setup -q -n %name-%{version}
 %setup -T -D -a 1
 
-%patch0 -p1
+# patch to remove warning as error 9.6.1 seems not to build in 2011
+%patch0 -p0
+%patch1 -p1
 %patch2 -p1
 
 %build
