@@ -1,6 +1,6 @@
 %define name	gcompris
 %define version 9.6.1
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: An educational game for children starting at 2
 Name: 	 %{name}
@@ -10,8 +10,10 @@ License: GPLv2+
 Group:   Education
 Source: http://prdownloads.sourceforge.net/gcompris/%name-%{version}.tar.gz
 Source1: geo_country_italy.tar.bz2
+Source2: geo_country_italy_prov.tar.bz2
 Patch0:		configure-disable-Werror.patch
 Patch1:		geo_country_italy.patch
+Patch3:		geo_country_italy_prov.patch
 Patch2:		gcompris-9.0-linkage.patch
 BuildRoot: %_tmppath/%name-%version-buildroot
 # anaselli: added to patch Makefile.am needed to add Italy map
@@ -457,11 +459,13 @@ Simplified Chinese sounds for gcompris.
 %prep
 %setup -q -n %name-%{version}
 %setup -T -D -a 1
+%setup -T -D -a 2
 
 # patch to remove warning as error 9.6.1 seems not to build in 2011
 %patch0 -p0
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %ifarch alpha
