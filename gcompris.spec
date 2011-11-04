@@ -10,6 +10,10 @@ License:	GPLv2+
 Group:		Education
 URL:		http://www.gcompris.net
 Source:		http://prdownloads.sourceforge.net/gcompris/%{name}-%{version}.tar.bz2
+#Fix deprecated stuff in glib
+Patch0:		gcompris-11.09-glib.patch
+#We don't want all warnings to be treated as errors
+Patch1:		gcompris-11.09-werror.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 BuildRequires:	gnome-common automake autoconf libtool-base
 BuildRequires:	gnuchess libogg-devel
@@ -487,6 +491,8 @@ Simplified Chinese sounds for gcompris.
 
 %prep
 %setup -q
+%patch0 -p1 -b .glib
+%patch1 -p1 -b .werror
 
 %build
 %ifarch alpha
