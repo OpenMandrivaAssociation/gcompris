@@ -1,17 +1,11 @@
-%define name	gcompris
-%define version 11.09
-%define release %mkrel 1
-
+Name:		gcompris
+Version:	12.01
+Release:	%mkrel 1
 Summary:	An educational game for children starting at 2
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
 License:	GPLv2+
 Group:		Education
 URL:		http://www.gcompris.net
-Source:		http://prdownloads.sourceforge.net/gcompris/%{name}-%{version}.tar.bz2
-#Fix deprecated stuff in glib
-Patch0:		gcompris-11.09-glib.patch
+Source:		http://prdownloads.sourceforge.net/gcompris/%{name}-%{version}.tar.gz
 #We don't want all warnings to be treated as errors
 Patch1:		gcompris-11.09-werror.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
@@ -38,7 +32,7 @@ BuildRequires:	libgstreamer-devel >= 0.10.0
 BuildRequires:	intltool librsvg-devel
 Requires:	%{name}-sound = %{version}-%{release}
 # (misc) gnuchess for the chees activitie, gnome-python-canvas for python board
-Requires:	gnuchess >= 5.02 
+Requires:	gnuchess >= 5.02
 Requires:	python gnome-python gnome-python-canvas pygtk2.0 python-sqlite2
 Requires:	librsvg tuxpaint
 Requires:	gnucap gstreamer0.10-plugins-good
@@ -491,7 +485,6 @@ Simplified Chinese sounds for gcompris.
 
 %prep
 %setup -q
-%patch0 -p1 -b .glib
 %patch1 -p1 -b .werror
 
 %build
@@ -506,13 +499,13 @@ autoreconf
 %make
 
 %install
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 %makeinstall_std
 
 #Fixing desktop file to match spec
-perl -pi -e "s/Icon=.*/Icon=gcompris/g" %{buildroot}%{_datadir}/applications/%{name}.desktop
-perl -pi -e "s/(Categories=).*/$1/" %{buildroot}%{_datadir}/applications/%{name}.desktop
-perl -pi -e "s/Icon=.*/Icon=gcompris-edit/g" %{buildroot}%{_datadir}/applications/%{name}-edit.desktop
+%__perl -pi -e "s/Icon=.*/Icon=gcompris/g" %{buildroot}%{_datadir}/applications/%{name}.desktop
+%__perl -pi -e "s/(Categories=).*/$1/" %{buildroot}%{_datadir}/applications/%{name}.desktop
+%__perl -pi -e "s/Icon=.*/Icon=gcompris-edit/g" %{buildroot}%{_datadir}/applications/%{name}-edit.desktop
 
 desktop-file-install --vendor="" \
   --remove-category="Application" \
@@ -527,8 +520,8 @@ desktop-file-install --vendor="" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/%{name}-edit.desktop
 
 # install icons
-mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
-install -m 644 gcompris{,-edit}.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/
+%__mkdir_p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
+%__install -m 644 gcompris{,-edit}.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/
 for size in 16x16 32x32; do
 	convert -scale $size gcompris.png \
 		%{buildroot}%{_iconsdir}/hicolor/$size/apps/gcompris.png
@@ -537,29 +530,17 @@ for size in 16x16 32x32; do
 done
 
 # remove unwanted files
-rm -f %{buildroot}%{_menudir}/%{name}
+%__rm -f %{buildroot}%{_menudir}/%{name}
 
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
-
-%post
-%if %mdkversion < 200900
-%update_menus
-%endif
-%_install_info %{name}.info
-
-%if %mdkversion < 200900
-%postun 
-%clean_menus
-%endif
+%__rm -rf %{buildroot}
 
 %preun
 %_remove_install_info %{name}.info
 
 %files -f %{name}.lang
-%defattr(-, root, root)
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_bindir}/*
 %{_libdir}/%{name}
@@ -608,145 +589,109 @@ rm -rf %{buildroot}
 %exclude %{_datadir}/%{name}/boards/voices/zh_CN
 
 %files music
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/music
 
 %files sounds-af
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/af
 
 %files sounds-ar
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/ar
 
 %files sounds-ast
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/ast
 
 %files sounds-bg
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/bg
 
 %files sounds-br
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/br
 
 %files sounds-cs
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/cs
 
 %files sounds-da
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/da
 
 %files sounds-de
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/de
 
 %files sounds-el
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/el
 
 %files sounds-en
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/en
 
 %files sounds-eo
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/eo
 
 %files sounds-eu
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/eu
 
 %files sounds-es
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/es
 
 %files sounds-fi
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/fi
 
 %files sounds-fr
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/fr
 
 %files sounds-he
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/he
 
 %files sounds-hi
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/hi
 
 %files sounds-hu
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/hu
 
 %files sounds-id
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/id
 
 %files sounds-it
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/it
 
 %files sounds-mr
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/mr
 
 %files sounds-nb
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/nb
 
 %files sounds-nl
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/nl
 
 %files sounds-nn
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/nn
 
 %files sounds-pa
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/pa
 
 %files sounds-pt
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/pt
 
 %files sounds-pt_BR
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/pt_BR
 
 %files sounds-ru
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/ru
 
 %files sounds-sl
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/sl
 
 %files sounds-so
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/so
 
 %files sounds-sr
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/sr
 
 %files sounds-sv
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/sv
 
 %files sounds-tr
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/tr
 
 %files sounds-ur
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/ur
 
 %files sounds-zh_CN
-%defattr(-, root, root)
 %{_datadir}/%{name}/boards/voices/zh_CN
