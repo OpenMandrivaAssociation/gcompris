@@ -8,19 +8,30 @@ URL:		http://www.gcompris.net
 Source:		http://prdownloads.sourceforge.net/gcompris/%{name}-%{version}.tar.gz
 #We don't want all warnings to be treated as errors
 Patch1:		gcompris-11.09-werror.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
-BuildRequires:	gnome-common automake autoconf libtool-base
-BuildRequires:	gnuchess libogg-devel
-BuildRequires:	libxml2-devel libgnomeui2-devel
-BuildRequires:	libvorbis-devel libao-devel 
+BuildRequires:	gnome-common
+BuildRequires:	automake
+BuildRequires:	autoconf
+BuildRequires:	libtool-base
+BuildRequires:	gnuchess
+BuildRequires:	libogg-devel
+BuildRequires:	libxml2-devel
+BuildRequires:	libgnomeui2-devel
+BuildRequires:	libvorbis-devel
+BuildRequires:	libao-devel
 BuildRequires:	imagemagick
 BuildRequires:	desktop-file-utils
 BuildRequires:	libgnet2-devel
 # (misc) needed for python support
-BuildRequires:	gnome-python python-devel pygtk2.0-devel
-BuildRequires:	texinfo texi2html libassetml-devel
+BuildRequires:	gnome-python
+BuildRequires:	python-devel
+BuildRequires:	pygtk2.0-devel
+BuildRequires:	pkgconfig(pycairo)
+BuildRequires:	texinfo
+BuildRequires:	texi2html
+BuildRequires:	libassetml-devel
 # (misc) for the need of a display for pygtk
-BuildRequires:	x11-server-xvfb xauth
+BuildRequires:	x11-server-xvfb
+BuildRequires:	xauth
 BuildRequires:	perl-XML-Parser
 BuildRequires:	sqlite3-devel
 BuildRequires:	python-pyxml
@@ -29,13 +40,21 @@ BuildRequires:	libgtk+2-devel
 # (misc) for fullscreen support, now it is done with xvidmode instead of xrandr
 BuildRequires:	libxxf86vm-devel
 BuildRequires:	libgstreamer-devel >= 0.10.0
-BuildRequires:	intltool librsvg-devel
+BuildRequires:	intltool
+BuildRequires:	librsvg-devel
 Requires:	%{name}-sound = %{version}-%{release}
 # (misc) gnuchess for the chees activitie, gnome-python-canvas for python board
 Requires:	gnuchess >= 5.02
-Requires:	python gnome-python gnome-python-canvas pygtk2.0 python-sqlite2
-Requires:	librsvg tuxpaint
-Requires:	gnucap gstreamer0.10-plugins-good
+Requires:	python
+Requires:	gnome-python
+Requires:	gnome-python-canvas
+Requires:	pygtk2.0
+Requires:	python-sqlite2
+Requires:	python-cairo
+Requires:	librsvg
+Requires:	tuxpaint
+Requires:	gnucap
+Requires:	gstreamer0.10-plugins-good
 # until 8.3 version, gcompris came with libraries
 Obsoletes:	libgcompris1.0
 
