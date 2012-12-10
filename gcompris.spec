@@ -1,6 +1,6 @@
 Name:		gcompris
 Version:	12.01
-Release:	%mkrel 1
+Release:	2
 Summary:	An educational game for children starting at 2
 License:	GPLv2+
 Group:		Education
@@ -8,40 +8,42 @@ URL:		http://www.gcompris.net
 Source:		http://prdownloads.sourceforge.net/gcompris/%{name}-%{version}.tar.gz
 #We don't want all warnings to be treated as errors
 Patch1:		gcompris-11.09-werror.patch
+
 BuildRequires:	gnome-common
 BuildRequires:	automake
 BuildRequires:	autoconf
 BuildRequires:	libtool-base
 BuildRequires:	gnuchess
-BuildRequires:	libogg-devel
-BuildRequires:	libxml2-devel
-BuildRequires:	libgnomeui2-devel
-BuildRequires:	libvorbis-devel
-BuildRequires:	libao-devel
+BuildRequires:	pkgconfig(ogg)
+BuildRequires:	pkgconfig(libxml-2.0)
+BuildRequires:	pkgconfig(libgnomeui-2.0)
+BuildRequires:	pkgconfig(vorbis)
+BuildRequires:	pkgconfig(ao)
 BuildRequires:	imagemagick
 BuildRequires:	desktop-file-utils
-BuildRequires:	libgnet2-devel
+BuildRequires:	pkgconfig(gnet-2.0)
 # (misc) needed for python support
 BuildRequires:	gnome-python
-BuildRequires:	python-devel
-BuildRequires:	pygtk2.0-devel
+BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pycairo)
 BuildRequires:	texinfo
-BuildRequires:	texi2html
-BuildRequires:	libassetml-devel
+BuildRequires:	texi2html >= 1.82
+BuildRequires:	pkgconfig(libassetml)
 # (misc) for the need of a display for pygtk
 BuildRequires:	x11-server-xvfb
 BuildRequires:	xauth
 BuildRequires:	perl-XML-Parser
-BuildRequires:	sqlite3-devel
+BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	python-pyxml
 BuildRequires:	python-sqlite2
-BuildRequires:	libgtk+2-devel
+BuildRequires:	pkgconfig(gtk+-2.0)
 # (misc) for fullscreen support, now it is done with xvidmode instead of xrandr
-BuildRequires:	libxxf86vm-devel
-BuildRequires:	libgstreamer-devel >= 0.10.0
+BuildRequires:	pkgconfig(xxf86vm)
+BuildRequires:	pkgconfig(gstreamer-0.10)
 BuildRequires:	intltool
-BuildRequires:	librsvg-devel
+BuildRequires:	pkgconfig(librsvg-2.0)
+
 Requires:	%{name}-sound = %{version}-%{release}
 # (misc) gnuchess for the chees activitie, gnome-python-canvas for python board
 Requires:	gnuchess >= 5.02
@@ -55,8 +57,6 @@ Requires:	librsvg
 Requires:	tuxpaint
 Requires:	gnucap
 Requires:	gstreamer0.10-plugins-good
-# until 8.3 version, gcompris came with libraries
-Obsoletes:	libgcompris1.0
 
 %description
 An educational game for children starting at 2.
@@ -346,7 +346,7 @@ Conflicts:	%{name} < 8.4.2-2
 BuildArch:	noarch
 
 %description sounds-nb
-Norvegian Bökmal sounds for gcompris.
+Norvegian BÃ¶kmal sounds for gcompris.
 
 %package sounds-nl
 Summary:	Nederland sounds for GCompris
@@ -507,10 +507,6 @@ Simplified Chinese sounds for gcompris.
 %patch1 -p1 -b .werror
 
 %build
-%ifarch alpha
-  MYARCH_FLAGS="--host=alpha-redhat-linux"
-%endif
-
 # anaselli: added due to a patched Makefile.am needed to add Italy map
 autoreconf
 %configure2_5x --enable-py-build-only --enable-gnet
@@ -518,13 +514,12 @@ autoreconf
 %make
 
 %install
-%__rm -rf %{buildroot}
 %makeinstall_std
 
 #Fixing desktop file to match spec
-%__perl -pi -e "s/Icon=.*/Icon=gcompris/g" %{buildroot}%{_datadir}/applications/%{name}.desktop
-%__perl -pi -e "s/(Categories=).*/$1/" %{buildroot}%{_datadir}/applications/%{name}.desktop
-%__perl -pi -e "s/Icon=.*/Icon=gcompris-edit/g" %{buildroot}%{_datadir}/applications/%{name}-edit.desktop
+perl -pi -e "s/Icon=.*/Icon=gcompris/g" %{buildroot}%{_datadir}/applications/%{name}.desktop
+perl -pi -e "s/(Categories=).*/$1/" %{buildroot}%{_datadir}/applications/%{name}.desktop
+perl -pi -e "s/Icon=.*/Icon=gcompris-edit/g" %{buildroot}%{_datadir}/applications/%{name}-edit.desktop
 
 desktop-file-install --vendor="" \
   --remove-category="Application" \
@@ -539,8 +534,8 @@ desktop-file-install --vendor="" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/%{name}-edit.desktop
 
 # install icons
-%__mkdir_p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
-%__install -m 644 gcompris{,-edit}.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
+install -m 644 gcompris{,-edit}.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/
 for size in 16x16 32x32; do
 	convert -scale $size gcompris.png \
 		%{buildroot}%{_iconsdir}/hicolor/$size/apps/gcompris.png
@@ -549,15 +544,9 @@ for size in 16x16 32x32; do
 done
 
 # remove unwanted files
-%__rm -f %{buildroot}%{_menudir}/%{name}
+rm -f %{buildroot}%{_menudir}/%{name}
 
 %find_lang %{name}
-
-%clean
-%__rm -rf %{buildroot}
-
-%preun
-%_remove_install_info %{name}.info
 
 %files -f %{name}.lang
 %doc AUTHORS COPYING ChangeLog NEWS README
@@ -714,3 +703,353 @@ done
 
 %files sounds-zh_CN
 %{_datadir}/%{name}/boards/voices/zh_CN
+
+
+%changelog
+* Tue Mar 20 2012 Andrey Bondrov <abondrov@mandriva.org> 12.01-1mdv2012.0
++ Revision: 785853
+- Update Requires and BuildRequires
+- New version 12.01
+
+* Fri Nov 04 2011 Andrey Bondrov <abondrov@mandriva.org> 11.09-1
++ Revision: 717610
+- Add patch0 to fix deprecated glib stuff and patch1 to fix build
+- New version 11.09, make music and sounds noarch, spec cleanup
+
+* Sun Jun 19 2011 Angelo Naselli <anaselli@mandriva.org> 9.6.1-2
++ Revision: 686071
+- added Italian provinces
+
+* Thu Apr 28 2011 Angelo Naselli <anaselli@mandriva.org> 9.6.1-1
++ Revision: 659849
+- removed Werror to allow building
+- new version 9.6.1
+- added Italy map, thanks to ALID (www.alid.it)
+
+* Sat Jan 01 2011 John Balcaen <mikala@mandriva.org> 9.5-2mdv2011.0
++ Revision: 626930
+- fix provides for gcompris-sound (main package requires version-release)
+
+* Sat Dec 25 2010 Funda Wang <fwang@mandriva.org> 9.5-1mdv2011.0
++ Revision: 624812
+- new version 9.5
+
+  + Michael Scherer <misc@mandriva.org>
+    - rebuild for python 2.7
+
+* Sat Jul 17 2010 Funda Wang <fwang@mandriva.org> 9.3-1mdv2011.0
++ Revision: 554688
+- new version 9.3
+
+* Wed Apr 28 2010 Frederic Crozat <fcrozat@mandriva.com> 9.2-2mdv2010.1
++ Revision: 540205
+- Patch3 (Luis Medinas): fix build with latest gtk (Mdv bug #58875)
+
+* Sun Feb 14 2010 Funda Wang <fwang@mandriva.org> 9.2-1mdv2010.1
++ Revision: 505839
+- new version 9.2
+- fix conflict version
+
+* Mon Feb 01 2010 Funda Wang <fwang@mandriva.org> 9.1-2mdv2010.1
++ Revision: 498954
+- split out zh_CN sound
+
+* Mon Jan 25 2010 Erwan Velu <erwan@mandriva.org> 9.1-1mdv2010.1
++ Revision: 495696
+- 9.1
+
+* Thu Jan 07 2010 Funda Wang <fwang@mandriva.org> 9.0-2mdv2010.1
++ Revision: 487017
+- split out sounds-eo
+
+* Tue Jan 05 2010 trem <trem@mandriva.org> 9.0-1mdv2010.1
++ Revision: 486506
+- update to new release 9.0
+
+* Sun Nov 22 2009 Funda Wang <fwang@mandriva.org> 8.4.13-1mdv2010.1
++ Revision: 468686
+- rediff patches
+- New version 8.4.13
+
+* Sat May 02 2009 Funda Wang <fwang@mandriva.org> 8.4.12-1mdv2010.0
++ Revision: 370476
+- New version 8.4.12
+
+* Fri Apr 03 2009 Funda Wang <fwang@mandriva.org> 8.4.9-3mdv2009.1
++ Revision: 363647
+- rebuild for missing packages
+
+* Wed Apr 01 2009 Funda Wang <fwang@mandriva.org> 8.4.9-2mdv2009.1
++ Revision: 363346
+- fix rpm group
+
+* Tue Mar 10 2009 Funda Wang <fwang@mandriva.org> 8.4.9-1mdv2009.1
++ Revision: 353362
+- New version 8.4.9
+
+* Wed Dec 24 2008 Michael Scherer <misc@mandriva.org> 8.4.8-2mdv2009.1
++ Revision: 318446
+- rebuild for new python
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - lowercase ImageMagick
+
+* Thu Nov 27 2008 Funda Wang <fwang@mandriva.org> 8.4.8-1mdv2009.1
++ Revision: 307231
+- fix file list
+- BR intltool
+- New version 8.4.8
+
+* Sat Nov 08 2008 Anne Nicolas <ennael@mandriva.org> 8.4.6-4mdv2009.1
++ Revision: 300912
+- Fix menus, new release
+
+* Tue Sep 09 2008 Funda Wang <fwang@mandriva.org> 8.4.6-3mdv2009.0
++ Revision: 282900
+- rebuild for gnet
+
+* Mon Sep 08 2008 Funda Wang <fwang@mandriva.org> 8.4.6-2mdv2009.0
++ Revision: 282480
+- singled out he voice
+
+* Mon Sep 08 2008 Funda Wang <fwang@mandriva.org> 8.4.6-1mdv2009.0
++ Revision: 282471
+- New version 8.4.6
+- merge fedora patches
+
+* Sun Jun 15 2008 Funda Wang <fwang@mandriva.org> 8.4.5-3mdv2009.0
++ Revision: 219269
+- fix startup failur (bug#41084)
+
+  + Pixel <pixel@mandriva.com>
+    - rpm filetriggers deprecates update_menus/update_scrollkeeper/update_mime_database/update_icon_cache/update_desktop_database/post_install_gconf_schemas
+
+* Wed Jun 11 2008 Funda Wang <fwang@mandriva.org> 8.4.5-2mdv2009.0
++ Revision: 217838
+- rebuild for new rpm binary payload
+- split out nn
+- New version 8.4.5
+
+* Sat Mar 15 2008 Funda Wang <fwang@mandriva.org> 8.4.4-2mdv2008.1
++ Revision: 188035
+- BR libgstreamer-devel > 0.10.0
+- requires devel(libgstreamer-0.10) for backporting
+- split out bg and ur voices
+
+* Thu Feb 14 2008 Erwan Velu <erwan@mandriva.org> 8.4.4-1mdv2008.1
++ Revision: 168614
+- 8.4.4
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - fix gstreamer0.10-devel BR for x86_64
+    - kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+* Sun Dec 16 2007 Funda Wang <fwang@mandriva.org> 8.4.2-3mdv2008.1
++ Revision: 120528
+- requires gstreamer-good
+
+* Sat Nov 17 2007 Funda Wang <fwang@mandriva.org> 8.4.2-2mdv2008.1
++ Revision: 109180
+- fix bug#35566: Bad package splitting
+- cleanup file list
+
+* Tue Oct 30 2007 Funda Wang <fwang@mandriva.org> 8.4.2-1mdv2008.1
++ Revision: 103953
+- New version 8.4.2
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - fix summary-ended-with-dot
+
+* Sun Sep 23 2007 Funda Wang <fwang@mandriva.org> 8.4-2mdv2008.0
++ Revision: 92356
+- Really requires gstreamer0.10
+- should BR gstreamer0.10
+- fix menu category
+
+  + Erwan Velu <erwan@mandriva.org>
+    - 8.4
+    - Rebuild
+
+* Fri Aug 17 2007 Funda Wang <fwang@mandriva.org> 8.3.3-1mdv2008.0
++ Revision: 65025
+- New version 8.3.3
+
+* Tue Aug 07 2007 Erwan Velu <erwan@mandriva.org> 8.3.2-1mdv2008.0
++ Revision: 59827
+- 8.3.2
+-Adding sr and el languages
+
+  + Funda Wang <fwang@mandriva.org>
+    - New version 8.3.2
+
+  + Michael Scherer <misc@mandriva.org>
+    - improve summary
+
+  + Herton Ronaldo Krzesinski <herton@mandriva.com.br>
+    - Removed old menu, placed icons in directories following
+      freedesktop.org standard.
+
+* Thu May 10 2007 Lenny Cartier <lenny@mandriva.org> 8.3.1-2mdv2008.0
++ Revision: 25948
+- Fix xdg section
+
+* Wed May 02 2007 Erwan Velu <erwan@mandriva.org> 8.3.1-1mdv2008.0
++ Revision: 20520
+- Missing buildrequires
+-Fixing typo
+-Fixing category for gcompris
+- Fixing XDG Menu
+- Adding Hindi language
+- oups typo
+- Fixing buildrequires
+- 8.3.1
+- Fixing build for older python
+
+
+* Sun Feb 18 2007 Erwan Velu <erwan@mandriva.org> 8.2.2-3mdv2007.0
++ Revision: 122560
+- Adding missing requires
+
+* Wed Jan 10 2007 Lenny Cartier <lenny@mandriva.com> 8.2.2-2mdv2007.1
++ Revision: 107062
+- Fix menu & patch is for x86_64 only (thx JORGE Jose)
+
+* Tue Dec 19 2006 Crispin Boylan <crisb@mandriva.org> 8.2.2-1mdv2007.1
++ Revision: 99892
+- 8.2.2, fix x86_64 build
+-Add xauth to buildreqs
+- Update URL, xgvf reqs
+- Remove unneeded gnome 1.x deps
+
+* Wed Nov 15 2006 Lenny Cartier <lenny@mandriva.com> 8.2.1-1mdv2007.1
++ Revision: 84298
+- Update to 8.2.1
+
+* Mon Nov 06 2006 Erwan Velu <erwan@mandriva.org> 8.2-1mdv2007.1
++ Revision: 76870
+- New version 8.2
+
+  + Lenny Cartier <lenny@mandriva.com>
+    - Update to 8.1
+    - Import gcompris
+
+* Fri Aug 11 2006 Lenny Cartier <lenny@mandriva.com> 7.4-2mdv2007.0
+- rebuild
+
+* Wed Apr 05 2006 Erwan Velu <erwan@seanodes.com> 7.4-1mdk
+- 7.4
+
+* Mon Feb 27 2006 Erwan Velu <erwan@seanodes.com> 7.3.2-1mdk
+- 7.3.2
+
+* Fri Feb 24 2006 Erwan Velu <erwan@seanodes.com> 7.3.1-1mdk
+- Using official 7.3.1
+- Fixing buildrequirres
+
+* Mon Feb 20 2006 Erwan Velu <erwan@seanodes.com> 7.3-2mdk
+- dapper.patch
+- This is the same as 7.3.1
+
+* Mon Feb 20 2006 Erwan Velu <erwan@seanodes.com> 7.3-1mdk
+- 7.3
+
+* Mon Dec 12 2005 Erwan Velu <erwan@seanodes.com> 7.2-1mdk
+- 7.2
+- Remove patch0 (merged upstream)
+
+* Wed Nov 23 2005 Erwan Velu <erwan@seanodes.com> 7.1-2mdk
+- Fixing some python troubles (thx to misc & yvesC)
+
+* Sat Nov 19 2005 Erwan Velu <erwan@seanodes.com> 7.1-1mdk
+- 7.1 final
+
+* Sun Oct 30 2005 Erwan Velu <erwan@seanodes.com> 7.1-0.1mdk
+- 7.1PRE1
+- Adding Icons
+- Renabling Configurator
+
+* Tue Oct 11 2005 Erwan Velu <erwan@seanodes.com> 7.0.3-4mdk
+- Fix BuildRequires
+
+* Thu Oct 06 2005 Nicolas Lécureuil <neoclust@mandriva.org> 7.0.3-3mdk
+- Fix BuildRequires
+
+* Wed Oct 05 2005 Nicolas Lécureuil <neoclust@mandriva.org> 7.0.3-2mdk
+- Fix BuildRequires
+
+* Wed Oct 05 2005 Erwan Velu <erwan@seanodes.com> 7.0.3-1mdk
+- 7.0.3
+
+* Fri Sep 23 2005 Erwan Velu <erwan@seanodes.com> 7.0.2-1mdk
+- 7.0.2
+
+* Mon Sep 19 2005 Michael Scherer <misc@mandriva.org> 7.0.1-1mdk
+- New release 7.0.1
+- fix pygtk building ( Xvfb trick )
+- remove gcompris_edit from the menu, use -a option
+- remove redondant requires
+
+* Wed Sep 14 2005 Erwan Velu <erwan@seanodes.com> 7.0.0-0.2mdk
+- Fixing deps (thx to aginies)
+- Adding mkrel (thx misc)
+
+* Mon Sep 12 2005 Erwan Velu <erwan@seanodes.com> 7.0.0-0.1mdk
+- 7.0.0PRE1
+- Adding sv
+- Moving assetml files to their respectives languages
+
+* Tue Jun 21 2005 Erwan Velu <erwan@seanodes.com> 6.5.3-1mdk
+- 6.5.3
+- Adding "--without-editor" as bruno coudoin said
+
+* Wed Apr 13 2005 Erwan Velu <erwan@seanodes.com> 6.5.2-1mdk
+- 6.5.2
+
+* Tue Mar 22 2005 Erwan Velu <erwan@seanodes.com> 6.5.1-1mdk
+- 6.5.1
+
+* Mon Mar 21 2005 Erwan Velu <erwan@seanodes.com> 6.5-1mdk
+- 6.5.0
+
+* Wed Mar 09 2005 Lenny Cartier <lenny@mandrakesoft.com> 6.5-0.pre2.2mdk
+- requires librsvg
+
+* Mon Feb 21 2005 Lenny Cartier <lenny@mandrakesoft.com> 6.5-0.pre2.1mdk
+- 6.5PRE2
+
+* Thu Jan 06 2005 Frederic Crozat <fcrozat@mandrakesoft.com> 6.4-2mdk 
+- Rebuild with latest howl
+
+* Sun Dec 12 2004 Lenny Cartier <lenny@mandrakesoft.com> 6.4-1mdk
+- 6.4
+
+* Sun Dec 05 2004 Michael Scherer <misc@mandrake.org> 6.3-2mdk
+- Rebuild for new python
+
+* Wed Nov 10 2004 Lenny Cartier <lenny@mandrakesoft.com> 6.3-1mdk
+- 6.3
+- add ru and da subpackages
+
+* Sun Jul 04 2004 Michael Scherer <misc@mandrake.org> 6.1-2mdk 
+- fix Requires ( thanks José JORGE <jjorge@free.fr> )
+
+* Mon Jun 21 2004 Michael Scherer <misc@mandrake.org> 6.1-1mdk
+- New release 6.1
+
+* Fri Jun 11 2004 Olivier Blin <blino@mandrake.org> 6.0-3mdk
+- BuildRequires SDL_mixer-devel
+
+* Sat May 29 2004 Michael Scherer <misc@mandrake.org> 6.0-2mdk 
+- [DIRM]
+
+* Thu May 27 2004 Michael Scherer <misc@mandrake.org> 6.0-1mdk
+- New release 6.0
+- split in library
+
+* Tue Apr 13 2004 Michael Scherer <misc@mandrake.org> 5.2-1mdk
+- New release 5.2
+- rpmbuildupdate aware
+
