@@ -549,13 +549,6 @@ rm -f %{buildroot}%{_menudir}/%{name}
 
 %find_lang %{name}
 
-%post 
-%_install_info %{name}.info
-
-%preun
-%_remove_install_info %{name}.info
-
-
 %files -f %{name}.lang
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_bindir}/*
