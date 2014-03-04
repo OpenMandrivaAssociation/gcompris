@@ -504,7 +504,6 @@ Simplified Chinese sounds for gcompris.
 
 %prep
 %setup -q
-%patch1 -p1 -b .werror
 
 %build
 # anaselli: added due to a patched Makefile.am needed to add Italy map
@@ -548,6 +547,13 @@ rm -f %{buildroot}%{_menudir}/%{name}
 
 %find_lang %{name}
 
+%post 
+%_install_info %{name}.info
+
+%preun
+%_remove_install_info %{name}.info
+
+
 %files -f %{name}.lang
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_bindir}/*
@@ -556,9 +562,7 @@ rm -f %{buildroot}%{_menudir}/%{name}
 %{_datadir}/pixmaps/*
 %{_iconsdir}/hicolor/*/apps/*
 %{_mandir}/man6/*
-%{_infodir}/*
 %{_datadir}/%{name}
-%{_datadir}/gnome/help/%{name}/eu/*
 %exclude %{_datadir}/%{name}/boards/music
 %exclude %{_datadir}/%{name}/boards/voices/af
 %exclude %{_datadir}/%{name}/boards/voices/ar
