@@ -1,3 +1,5 @@
+%define _disable_ld_no_undefined 1
+
 Name:		gcompris
 Version:	12.11
 Release:	1
