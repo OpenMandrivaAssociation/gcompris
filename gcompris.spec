@@ -5,7 +5,7 @@ Summary:	An educational game for children starting at 2
 License:	GPLv2+
 Group:		Education
 URL:		http://www.gcompris.net
-Source0:	http://prdownloads.sourceforge.net/gcompris/%{name}-%{version}.tar.gz
+Source0:	http://prdownloads.sourceforge.net/gcompris/%{name}-%{version}.tar.bz2
 #We don't want all warnings to be treated as errors
 Patch1:		gcompris-11.09-werror.patch
 
