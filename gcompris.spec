@@ -1,3 +1,5 @@
+%define _disable_ld_no_undefined 1
+
 Name:		gcompris
 Version:	12.11
 Release:	1
@@ -6,6 +8,7 @@ License:	GPLv2+
 Group:		Education
 URL:		http://www.gcompris.net
 Source0:	http://prdownloads.sourceforge.net/gcompris/%{name}-%{version}.tar.bz2
+Source100:	gcompris.rpmlintrc
 #We don't want all warnings to be treated as errors
 Patch1:		gcompris-11.09-werror.patch
 
@@ -546,13 +549,6 @@ done
 rm -f %{buildroot}%{_menudir}/%{name}
 
 %find_lang %{name}
-
-%post 
-%_install_info %{name}.info
-
-%preun
-%_remove_install_info %{name}.info
-
 
 %files -f %{name}.lang
 %doc AUTHORS COPYING ChangeLog NEWS README
