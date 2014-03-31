@@ -8,6 +8,7 @@ License:	GPLv2+
 Group:		Education
 URL:		http://www.gcompris.net
 Source0:	http://prdownloads.sourceforge.net/gcompris/%{name}-%{version}.tar.bz2
+Source100:	gcompris.rpmlintrc
 #We don't want all warnings to be treated as errors
 Patch1:		gcompris-11.09-werror.patch
 
