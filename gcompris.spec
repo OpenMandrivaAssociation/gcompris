@@ -498,7 +498,7 @@ Summary:	Simplified Chinese sounds for GCompris
 Group:		Education
 Requires:	%{name} = %{version}-%{release}
 Provides:	%{name}-sound = %{version}-%{release}
-Requires:	locales-zh_CN
+Requires:	locales-zh
 Conflicts:	%{name} < 9.1-2
 BuildArch:	noarch
 
