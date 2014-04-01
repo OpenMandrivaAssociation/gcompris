@@ -1,7 +1,7 @@
 %define _disable_ld_no_undefined 1
 
 Name:		gcompris
-Version:	12.11
+Version:	14.03
 Release:	1
 Summary:	An educational game for children starting at 2
 License:	GPLv2+
@@ -9,8 +9,6 @@ Group:		Education
 URL:		http://www.gcompris.net
 Source0:	http://prdownloads.sourceforge.net/gcompris/%{name}-%{version}.tar.bz2
 Source100:	gcompris.rpmlintrc
-#We don't want all warnings to be treated as errors
-Patch1:		gcompris-11.09-werror.patch
 
 BuildRequires:	gnome-common
 BuildRequires:	automake
@@ -509,8 +507,6 @@ Simplified Chinese sounds for gcompris.
 %setup -q
 
 %build
-# anaselli: added due to a patched Makefile.am needed to add Italy map
-autoreconf
 %configure2_5x --enable-py-build-only --enable-gnet
 
 %make
@@ -557,7 +553,6 @@ rm -f %{buildroot}%{_menudir}/%{name}
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/*
 %{_iconsdir}/hicolor/*/apps/*
-%{_mandir}/man6/*
 %{_datadir}/%{name}
 %exclude %{_datadir}/%{name}/boards/music
 %exclude %{_datadir}/%{name}/boards/voices/af
