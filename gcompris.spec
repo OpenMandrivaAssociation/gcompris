@@ -2,7 +2,7 @@
 
 Name:		gcompris
 Version:	14.03
-Release:	1
+Release:	2
 Summary:	An educational game for children starting at 2
 License:	GPLv2+
 Group:		Education
@@ -10,21 +10,17 @@ URL:		http://www.gcompris.net
 Source0:	http://prdownloads.sourceforge.net/gcompris/%{name}-%{version}.tar.bz2
 Source100:	gcompris.rpmlintrc
 
-BuildRequires:	gnome-common
 BuildRequires:	automake
 BuildRequires:	autoconf
 BuildRequires:	libtool-base
 BuildRequires:	gnuchess
 BuildRequires:	pkgconfig(ogg)
 BuildRequires:	pkgconfig(libxml-2.0)
-BuildRequires:	pkgconfig(libgnomeui-2.0)
 BuildRequires:	pkgconfig(vorbis)
 BuildRequires:	pkgconfig(ao)
 BuildRequires:	imagemagick
 BuildRequires:	desktop-file-utils
 BuildRequires:	pkgconfig(gnet-2.0)
-# (misc) needed for python support
-BuildRequires:	gnome-python
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pycairo)
@@ -46,11 +42,8 @@ BuildRequires:	intltool
 BuildRequires:	pkgconfig(librsvg-2.0)
 
 Requires:	%{name}-sound = %{version}-%{release}
-# (misc) gnuchess for the chees activitie, gnome-python-canvas for python board
 Requires:	gnuchess >= 5.02
 Requires:	python
-Requires:	gnome-python
-Requires:	gnome-python-canvas
 Requires:	pygtk2.0
 Requires:	python-sqlite2
 Requires:	python-cairo
