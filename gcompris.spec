@@ -583,6 +583,7 @@ rm -f %{buildroot}%{_menudir}/%{name}
 %exclude %{_datadir}/%{name}/boards/voices/tr
 %exclude %{_datadir}/%{name}/boards/voices/ur
 %exclude %{_datadir}/%{name}/boards/voices/zh_CN
+%{_datadir}/appdata/gcompris.appdata.xml
 
 %files music
 %{_datadir}/%{name}/boards/music
