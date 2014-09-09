@@ -1,13 +1,13 @@
 %define _disable_ld_no_undefined 1
 
 Name:		gcompris
-Version:	14.05
+Version:	14.07
 Release:	1
 Summary:	An educational game for children starting at 2
 License:	GPLv2+
 Group:		Education
 URL:		http://www.gcompris.net
-Source0:	http://sourceforge.net/projects/gcompris/files/14.05/%{name}-%{version}.tar.bz2
+Source0:	http://gcompris.net/download/%{name}-%{version}.tar.bz2
 Source100:	gcompris.rpmlintrc
 
 BuildRequires:	automake
