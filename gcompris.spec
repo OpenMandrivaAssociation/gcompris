@@ -2,7 +2,7 @@
 
 Name:		gcompris
 Version:	14.07
-Release:	1
+Release:	2
 Summary:	An educational game for children starting at 2
 License:	GPLv2+
 Group:		Education
