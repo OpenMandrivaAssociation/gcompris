@@ -1,8 +1,8 @@
 %define _disable_ld_no_undefined 1
 
 Name:		gcompris
-Version:	14.07
-Release:	2
+Version:	14.12
+Release:	1
 Summary:	An educational game for children starting at 2
 License:	GPLv2+
 Group:		Education

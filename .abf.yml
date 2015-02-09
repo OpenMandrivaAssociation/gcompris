@@ -2,5 +2,6 @@ removed_sources:
   gcompris-12.11.tar.bz2: cca586b5de850b476821e50faad571a4883db36a
   gcompris-14.03.tar.bz2: cd74c4751d1f0d855df7a223f5d3f27ad0fadee4
   gcompris-14.05.tar.bz2: de0e544a026eb94650160d856f99feaebc0c6ee0
-sources:
   gcompris-14.07.tar.bz2: acf208c9860c262f371bc0bbbdaea0a785217c21
+sources:
+  gcompris-14.12.tar.bz2: 5fc72de2ccbdc73e9578d7b0d609a49de1bddd3f
