@@ -32,7 +32,6 @@ BuildRequires:	x11-server-xvfb
 BuildRequires:	xauth
 BuildRequires:	perl-XML-Parser
 BuildRequires:	pkgconfig(sqlite3)
-BuildRequires:	python-pyxml
 BuildRequires:	python-sqlite2
 BuildRequires:	pkgconfig(gtk+-2.0)
 # (misc) for fullscreen support, now it is done with xvidmode instead of xrandr
