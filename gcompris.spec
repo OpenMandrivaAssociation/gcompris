@@ -26,7 +26,6 @@ BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pycairo)
 BuildRequires:	texinfo
 BuildRequires:	texi2html >= 1.82
-BuildRequires:	pkgconfig(libassetml)
 # (misc) for the need of a display for pygtk
 BuildRequires:	x11-server-xvfb
 BuildRequires:	xauth
