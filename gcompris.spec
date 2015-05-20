@@ -497,7 +497,7 @@ Simplified Chinese sounds for gcompris.
 %setup -q
 
 %build
-%configure2_5x --enable-py-build-only --enable-gnet --enable-sdlmixer
+%configure2_5x --enable-py-build-only --enable-gnet --enable-sdlmixer LIBS=-lgmodule-2.0
 
 %make
 
