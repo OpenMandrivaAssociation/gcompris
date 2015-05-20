@@ -1,7 +1,7 @@
 %define _disable_ld_no_undefined 1
 
 Name:		gcompris
-Version:	14.12
+Version:	15.02
 Release:	1
 Summary:	An educational game for children starting at 2
 License:	GPLv2+
@@ -35,7 +35,7 @@ BuildRequires:	python-sqlite2
 BuildRequires:	pkgconfig(gtk+-2.0)
 # (misc) for fullscreen support, now it is done with xvidmode instead of xrandr
 BuildRequires:	pkgconfig(xxf86vm)
-BuildRequires:	pkgconfig(gstreamer-0.10)
+BuildRequires:	pkgconfig(SDL_mixer)
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(librsvg-2.0)
 
@@ -48,7 +48,6 @@ Requires:	python-cairo
 Requires:	librsvg
 Requires:	tuxpaint
 Requires:	gnucap
-Requires:	gstreamer0.10-plugins-good
 
 %description
 An educational game for children starting at 2.
@@ -498,7 +497,7 @@ Simplified Chinese sounds for gcompris.
 %setup -q
 
 %build
-%configure2_5x --enable-py-build-only --enable-gnet
+%configure2_5x --enable-py-build-only --enable-gnet --enable-sdlmixer
 
 %make
 
