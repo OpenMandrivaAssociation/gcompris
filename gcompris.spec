@@ -1,7 +1,7 @@
 %define _disable_ld_no_undefined 1
 
 Name:		gcompris
-Version:	15.02
+Version:	17.05
 Release:	1
 Summary:	An educational game for children starting at 2
 License:	GPLv2+
@@ -22,7 +22,7 @@ BuildRequires:	imagemagick
 BuildRequires:	desktop-file-utils
 BuildRequires:	pkgconfig(gnet-2.0)
 BuildRequires:	pkgconfig(python)
-BuildRequires:	pkgconfig(pygtk-2.0)
+#BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pycairo)
 BuildRequires:	texinfo
 BuildRequires:	texi2html >= 1.82
@@ -42,7 +42,7 @@ BuildRequires:	pkgconfig(librsvg-2.0)
 Requires:	%{name}-sound = %{version}-%{release}
 Requires:	gnuchess >= 5.02
 Requires:	python
-Requires:	pygtk2.0
+#Requires:	pygtk2.0
 Requires:	python-sqlite2
 Requires:	python-cairo
 Requires:	librsvg
