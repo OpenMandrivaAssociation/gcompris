@@ -23,7 +23,7 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	pkgconfig(gnet-2.0)
 BuildRequires:	pkgconfig(python)
 #BuildRequires:	pkgconfig(pygtk-2.0)
-BuildRequires:	pkgconfig(pycairo)
+BuildRequires:	pkgconfig(py3cairo)
 BuildRequires:	texinfo
 BuildRequires:	texi2html >= 1.82
 # (misc) for the need of a display for pygtk
