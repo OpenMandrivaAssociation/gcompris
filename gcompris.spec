@@ -1,5 +1,8 @@
 %define _disable_ld_no_undefined 1
 
+# Workaround duplicate symbols
+%global optflags %{optflags} -fcommon
+
 Name:		gcompris
 Version:	17.05
 Release:	1
