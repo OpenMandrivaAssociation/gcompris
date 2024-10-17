@@ -9,7 +9,7 @@ Release:	1
 Summary:	An educational game for children starting at 2
 License:	GPLv2+
 Group:		Education
-URL:		http://www.gcompris.net
+URL:		https://www.gcompris.net
 Source0:	http://gcompris.net/download/%{name}-%{version}.tar.bz2
 Source100:	gcompris.rpmlintrc
 
