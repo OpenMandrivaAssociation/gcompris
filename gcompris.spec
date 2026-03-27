@@ -5,7 +5,7 @@
 
 Name:		gcompris
 Version:	17.05
-Release:	1
+Release:	2
 Summary:	An educational game for children starting at 2
 License:	GPLv2+
 Group:		Education
