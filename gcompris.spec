@@ -13,6 +13,7 @@ URL:		https://www.gcompris.net
 Source0:	http://gcompris.net/download/%{name}-%{version}.tar.bz2
 Source100:	gcompris.rpmlintrc
 
+BuildRequires:	make
 BuildRequires:	slibtool
 BuildRequires:	automake
 BuildRequires:	autoconf
