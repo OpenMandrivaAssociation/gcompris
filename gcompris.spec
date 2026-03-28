@@ -3,6 +3,9 @@
 # Workaround duplicate symbols
 %global optflags %{optflags} -fcommon
 
+%global optflags %{optflags} -Wno-incompatible-function-pointer-types
+%global optflags %{optflags} -Wno-incompatible-pointer-types
+
 Name:		gcompris
 Version:	17.05
 Release:	2
